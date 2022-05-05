@@ -21,8 +21,11 @@ const Table: React.FC<Props> = ({ characters }) => {
         </tr>
       </thead>
       <tbody>
-        {characters.map(characterFromList => (
-            <CharacterInTable character={characterFromList} />
+        {characters.map((characterFromList) => (
+          <CharacterInTable
+            character={characterFromList}
+            key={characterFromList.id}
+          />
         ))}
       </tbody>
     </table>

@@ -1,3 +1,3 @@
 ## issues
 - [ ] hover on inputs
-- [ ] cleaner useGetAllCharacter
+- [x] cleaner useGetAllCharacter
