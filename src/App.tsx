@@ -1,29 +1,20 @@
-import { useAppDispatch, useAppSelector } from './redux/hooks'
+// import { useAppDispatch, useAppSelector } from './redux/hooks'
+// import { useGetCharactersQuery } from './redux/rnmApi';
 
-import { increment } from './redux/appSlice';
-
-import './App.css'
-import { useGetCharactersQuery } from './redux/rnmApi';
+import Characters from './conponents/Characters';
 
 const App = () => {
-  const {value} = useAppSelector(store => store.appSlice);
-  const { data, error, isLoading} = useGetCharactersQuery('');
+  // const {value} = useAppSelector(store => store.appSlice);
+  // const { data, error, isLoading} = useGetCharactersQuery('');
  
-  if(data) {
-    console.log(data);
-  }
+  // if(data) {
+  //   console.log(data);
+  // }
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   return (
-    <div className="App">
-      App
-      <button
-        onClick={() => dispatch(increment())}
-      >
-        {value}
-      </button>
-    </div>
+    <Characters />
   )
 }
 
