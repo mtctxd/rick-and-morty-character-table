@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IAppState } from '../models.ts';
 import { RootState } from './store';
 
-interface AppState {
-  value: number;
-}
-
-const initialState: AppState = {
+const initialState: IAppState = {
   value: 0,
 };
 

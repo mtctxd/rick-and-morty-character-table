@@ -1,10 +1,18 @@
-import { increment } from './redux/AppSlice';
 import { useAppDispatch, useAppSelector } from './redux/hooks'
 
+import { increment } from './redux/appSlice';
+
 import './App.css'
+import { useGetCharactersQuery } from './redux/rnmApi';
 
 const App = () => {
   const {value} = useAppSelector(store => store.appSlice);
+  const { data, error, isLoading} = useGetCharactersQuery('');
+ 
+  if(data) {
+    console.log(data);
+  }
+
   const dispatch = useAppDispatch();
 
   return (

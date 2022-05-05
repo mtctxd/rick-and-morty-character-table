@@ -1,0 +1,1 @@
+export const API_RNM = 'https://rickandmortyapi.com/api'; 
