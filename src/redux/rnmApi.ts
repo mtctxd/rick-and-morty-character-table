@@ -8,8 +8,8 @@ export const rnmApi = createApi({
   reducerPath: 'rnmAPi',
   baseQuery: fetchBaseQuery({ baseUrl: API_RNM }),
   endpoints: (builder) => ({
-    getCharacters: builder.query<ICharactersFromApi, string>({
-      query: () => 'character',
+    getCharacters: builder.query<ICharactersFromApi, number>({
+      query: (pageNumber) => `character?page=${pageNumber}`,
     }),
   }),
 })

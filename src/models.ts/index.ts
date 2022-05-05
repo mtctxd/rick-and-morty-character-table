@@ -18,7 +18,7 @@ interface Location {
   url: string;
 }
 
-interface Result {
+export interface Character {
   id: number;
   name: string;
   status: string;
@@ -35,5 +35,5 @@ interface Result {
 
 export interface ICharactersFromApi {
   info: Info;
-  results: Result[];
+  results: Character[];
 }
