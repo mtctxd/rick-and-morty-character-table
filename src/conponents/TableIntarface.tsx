@@ -1,19 +1,14 @@
-import CharacterSearch from "./CharacterSearch";
+import CharacterSearch from "./TableInterfaceSearch";
+import TableInterfaceOption from "./TableInterfaceOption";
 
 const TableInterface = () => {
   return (
     <div className="table-app__interface interface">
       <CharacterSearch />
       <div className="interface__options">
-        <div className="interface__option interface-item interface-item--option">
-          Species
-        </div>
-        <div className="interface__option interface-item interface-item--option">
-          Origin
-        </div>
-        <div className="interface__option interface-item interface-item--option">
-          Status
-        </div>
+      <TableInterfaceOption propertyName="species"/>
+      <TableInterfaceOption propertyName="origin"/>
+      <TableInterfaceOption propertyName="status"/>
       </div>
       <div className="interface__actions">
         <div className="interface__action interface-item interface-item--action interface-item--action-blue">

@@ -7,6 +7,11 @@ const initialState: IAppState = {
   charactersList: [],
   preparedCharacterList: [],
   searchQuery: '',
+  filterOptions: {
+    species: [],
+    origin: [],
+    status: [],
+  }
 };
 
 export const initialCharactersFetch = createAsyncThunk(

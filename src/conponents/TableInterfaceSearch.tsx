@@ -1,7 +1,7 @@
 import { changeSearchQuery } from "../redux/appSlice";
 import { useAppDispatch } from "../redux/hooks";
 
-const CharacterSearch = () => {
+const TableInterfaceSearch = () => {
     const dispatch = useAppDispatch();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,4 +15,4 @@ const CharacterSearch = () => {
   );
 };
 
-export default CharacterSearch;
+export default TableInterfaceSearch;

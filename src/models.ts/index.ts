@@ -2,7 +2,15 @@ export interface IAppState {
   charactersList: Character[],
   preparedCharacterList: Character[],
   searchQuery: string;
+  filterOptions: IFilterOptions,
 }
+
+export interface IFilterOptions {
+  species: string[],
+  origin: Origin[],
+  status: string[],
+}
+
 interface Info {
   count: number;
   pages: number;
