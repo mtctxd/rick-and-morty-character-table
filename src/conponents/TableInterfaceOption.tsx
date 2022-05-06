@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import capitalize from '../feature/capitalize';
 import getOptions from '../feature/getOptions';
 import { IFilterOptions } from '../models.ts';
@@ -9,16 +10,13 @@ type Props = {
 };
 
 const TableInterfaceOption: React.FC<Props> = ({ propertyName }) => {
+  const filterOptionsList = useAppSelector(
+    (store) => store.appSlice.filterOptions[propertyName]
+  );
   const { charactersList } = useAppSelector((store) => store.appSlice);
-  const [optionsList, setOptionsList] = useState<any[]>([]);
-
-  useEffect(() => {
-    setOptionsList(getOptions(charactersList, propertyName));
-  }, []);
 
   return (
-    <div className="interface__option interface-item interface-item--option"
-    >
+    <div className="interface__option interface-item interface-item--option">
       {capitalize(propertyName)}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -32,6 +30,19 @@ const TableInterfaceOption: React.FC<Props> = ({ propertyName }) => {
           fill="#5F6569"
         />
       </svg>
+      <div className="interface-item__dropdown">
+        {/* {filterOptionsList.map((option) => {
+          return (
+            <div
+              className={classNames('interface-item__dropdown-item', {
+                'interface-item__dropdown-item-checked': option.checked,
+              })}
+            >
+              {option.name}
+            </div>
+          );
+        })} */}
+      </div>
     </div>
   );
 };
