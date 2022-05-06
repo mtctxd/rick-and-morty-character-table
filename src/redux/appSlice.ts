@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getAllCharacters from '../feature/getAllCharacters';
 import getOptions from '../feature/getOptions';
+import isOptionsFiled from '../feature/isOptionsFilled';
+import preparedOptions from '../feature/prepareOptions';
 import { IAppState, OptionKey } from '../models.ts';
 import { RootState } from './store';
 
@@ -24,8 +26,28 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    changePreparedCharacterList: (state, { payload }) => {
-      state.preparedCharacterList = payload;
+    filterBySearch: (state) => {
+      if (state.searchQuery) {
+        state.preparedCharacterList = state.charactersList.filter(
+          (character) => {
+            const checkCondition = character.name
+              .split(' ')
+              .join()
+              .toLowerCase()
+              .includes(state.searchQuery.split(' ').join().toLowerCase());
+
+            return checkCondition;
+          }
+        );
+      }
+    },
+    filterByOptions: (state) => {
+      const options = preparedOptions(state.filterOptions);
+
+      if (isOptionsFiled(options)) {
+        console.log('asd');
+        
+      }
     },
     changeSearchQuery: (state, { payload }) => {
       state.searchQuery = payload;
@@ -53,8 +75,12 @@ export const appSlice = createSlice({
   },
 });
 
-export const { changeSearchQuery, changePreparedCharacterList, toggleOption } =
-  appSlice.actions;
+export const {
+  changeSearchQuery,
+  filterBySearch,
+  toggleOption,
+  filterByOptions,
+} = appSlice.actions;
 
 // should i use it???
 export const selectApp = (state: RootState) => state.appSlice;

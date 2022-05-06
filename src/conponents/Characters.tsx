@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import preparedOptions from '../feature/prepareOptions';
 import { IFilterOptions } from '../models.ts';
 import {
-  changePreparedCharacterList,
+  filterByOptions,
+  filterBySearch,
   initialCharactersFetch,
 } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
@@ -20,26 +21,8 @@ const Characters = () => {
   }, []);
 
   useEffect(() => {
-    const options = preparedOptions(filterOptions);
-    if (searchQuery) {
-      dispatch(
-        changePreparedCharacterList(
-          charactersList.filter((character) => {
-            const checkCondition = character.name
-              .split(' ')
-              .join()
-              .toLowerCase()
-              .includes(searchQuery.split(' ').join().toLowerCase());
-
-            return checkCondition;
-          })
-        )
-      );
-    }
-
-    if (Object.values(options).some(checkProperty => checkProperty.length)) {
-      console.log(Object.values(options));
-    }
+    dispatch(filterBySearch());
+    dispatch(filterByOptions());
   }, [searchQuery, filterOptions, charactersList]);
 
   return (

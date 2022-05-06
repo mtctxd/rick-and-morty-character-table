@@ -7,4 +7,4 @@
 - [ ] make debounced search
 - [ ] scale-y for dropdown show for better optimisation
 - [ ] some variable names are too long
-    - changePreparedCharacterList
+    - [x]changePreparedCharacterList
