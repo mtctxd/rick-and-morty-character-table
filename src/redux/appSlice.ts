@@ -9,10 +9,10 @@ const initialState: IAppState = {
   preparedCharacterList: [],
   searchQuery: '',
   filterOptions: {
-    [OptionKey.origin]: [],
-    [OptionKey.species]: [],
-    [OptionKey.status]: [],
-  }
+    [OptionKey.origin]: {},
+    [OptionKey.species]: {},
+    [OptionKey.status]: {},
+  },
 };
 
 export const initialCharactersFetch = createAsyncThunk(
@@ -30,6 +30,17 @@ export const appSlice = createSlice({
     changeSearchQuery: (state, { payload }) => {
       state.searchQuery = payload;
     },
+    toggleOption: (state, action) => {
+      const { name, status, propertyName } = action.payload;
+
+      state.filterOptions = {
+        ...state.filterOptions,
+        [propertyName]: {
+          ...state.filterOptions[propertyName],
+          [name]: !status,
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
@@ -42,7 +53,7 @@ export const appSlice = createSlice({
   },
 });
 
-export const { changeSearchQuery, changePreparedCharacterList } =
+export const { changeSearchQuery, changePreparedCharacterList, toggleOption } =
   appSlice.actions;
 
 // should i use it???

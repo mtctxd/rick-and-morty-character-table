@@ -2,13 +2,14 @@ export interface IAppState {
   charactersList: Character[],
   preparedCharacterList: Character[],
   searchQuery: string;
-  filterOptions: IFilterOptions,
+  filterOptions: IFilterOptions<filterOption>,
 }
 
-export interface IFilterOptions {
-  [OptionKey.species]: any[],
-  [OptionKey.origin]: any[],
-  [OptionKey.status]: any[],
+export interface IFilterOptions<T = filterOption> {
+  [key: string]: T,
+  // [OptionKey.species]: filterOption,
+  // [OptionKey.origin]: filterOption,
+  // [OptionKey.status]: filterOption,
 }
 
 export enum OptionKey {
@@ -17,9 +18,8 @@ export enum OptionKey {
   status = 'status'
 }
 
-type filterOption = {
-  name: string,
-  checked: boolean,
+interface filterOption {
+  [key: string]: boolean
 }
 
 interface Info {

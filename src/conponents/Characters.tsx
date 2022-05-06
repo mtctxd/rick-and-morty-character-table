@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import preparedOptions from '../feature/prepareOptions';
+import { IFilterOptions } from '../models.ts';
 import {
   changePreparedCharacterList,
   initialCharactersFetch,
@@ -8,7 +10,7 @@ import Table from './Table';
 import TableInterface from './TableIntarface';
 
 const Characters = () => {
-  const { searchQuery, charactersList } = useAppSelector(
+  const { searchQuery, charactersList, filterOptions } = useAppSelector(
     (store) => store.appSlice
   );
   const dispatch = useAppDispatch();
@@ -18,6 +20,7 @@ const Characters = () => {
   }, []);
 
   useEffect(() => {
+    const options = preparedOptions(filterOptions);
     if (searchQuery) {
       dispatch(
         changePreparedCharacterList(
@@ -33,7 +36,11 @@ const Characters = () => {
         )
       );
     }
-  }, [searchQuery]);
+
+    if (Object.values(options).some(checkProperty => checkProperty.length)) {
+      console.log(Object.values(options));
+    }
+  }, [searchQuery, filterOptions, charactersList]);
 
   return (
     <div className="container">
