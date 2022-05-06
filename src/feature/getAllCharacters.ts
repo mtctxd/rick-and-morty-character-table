@@ -20,7 +20,27 @@ const getAllCharacters = async (): Promise<Character[]> => {
   );
 
   const flattenedData = restOfThepages.reduce((acc, d) => [...acc, ...d], []);
-  return [...data.results, ...flattenedData];
+
+  const result = [...data.results, ...flattenedData];
+
+  const preparedResult = await Promise.all(
+    result.map(async (item) => {
+      const {name, url} = item.origin;
+
+      if (name === 'unknown') {
+        return item;
+      }
+
+      const entryData = await fetch(url);
+      const entry = await entryData.json();
+
+      item.origin.entry = entry.type;
+
+      return item;
+    })
+  );
+
+  return preparedResult;
 };
 
 export default getAllCharacters;

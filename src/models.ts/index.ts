@@ -29,9 +29,19 @@ interface Info {
   prev: string | null;
 }
 
+interface OriginEntry {
+  id: number,
+  name: string,
+  type: string,
+  dimennsion: string,
+  residents: string[],
+  created: string,
+}
+
 interface Origin {
   name: string;
   url: string;
+  entry?: OriginEntry,
 }
 
 interface Location {

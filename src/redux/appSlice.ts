@@ -45,7 +45,6 @@ export const appSlice = createSlice({
       const options = preparedOptions(state.filterOptions);
 
       if (isOptionsFiled(options)) {
-        console.log('asd');
         
       }
     },
