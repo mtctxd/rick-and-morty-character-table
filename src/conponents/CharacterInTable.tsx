@@ -16,7 +16,9 @@ const CharacterInTable: React.FC<Props> = ({ character }) => {
       </td>
       <td>
         <div>{origin.name}</div>
-        <div>{origin.name}</div>
+        {origin.entry && (
+          <div>{origin.entry}</div>
+        )}
       </td>
       <td>{name}</td>
       <td>{status}</td>

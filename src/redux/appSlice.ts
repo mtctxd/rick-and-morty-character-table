@@ -3,7 +3,7 @@ import getAllCharacters from '../feature/getAllCharacters';
 import getOptions from '../feature/getOptions';
 import isOptionsFiled from '../feature/isOptionsFilled';
 import preparedOptions from '../feature/prepareOptions';
-import { IAppState, OptionKey } from '../models.ts';
+import { Character, IAppState, OptionKey } from '../models.ts';
 import { RootState } from './store';
 
 const initialState: IAppState = {
@@ -26,9 +26,12 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    filterBySearch: (state) => {
+    prepareCharacterList: (state) => {
+      state.preparedCharacterList = state.charactersList;
+    },
+    filterBySearch: (state, action) => {
       if (state.searchQuery) {
-        state.preparedCharacterList = state.charactersList.filter(
+        state.preparedCharacterList = (action.payload as Character[]).filter(
           (character) => {
             const checkCondition = character.name
               .split(' ')
@@ -41,12 +44,8 @@ export const appSlice = createSlice({
         );
       }
     },
-    filterByOptions: (state) => {
-      const options = preparedOptions(state.filterOptions);
-
-      if (isOptionsFiled(options)) {
-        
-      }
+    filterByOptions: (state, action) => {
+      state.preparedCharacterList = action.payload;
     },
     changeSearchQuery: (state, { payload }) => {
       state.searchQuery = payload;
@@ -75,6 +74,7 @@ export const appSlice = createSlice({
 });
 
 export const {
+  prepareCharacterList,
   changeSearchQuery,
   filterBySearch,
   toggleOption,

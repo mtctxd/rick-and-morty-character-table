@@ -1,15 +1,17 @@
-import CharacterSearch from "./TableInterfaceSearch";
-import TableInterfaceOption from "./TableInterfaceOption";
-import { OptionKey } from "../models.ts";
+import CharacterSearch from './TableInterfaceSearch';
+import TableInterfaceOption from './TableInterfaceOption';
+import { OptionKey } from '../models.ts';
+import Option from './Option';
 
 const TableInterface = () => {
   return (
     <div className="table-app__interface interface">
       <CharacterSearch />
       <div className="interface__options">
-      <TableInterfaceOption propertyName={OptionKey.species}/>
-      <TableInterfaceOption propertyName={OptionKey.origin}/>
-      <TableInterfaceOption propertyName={OptionKey.status}/>
+        {/* <TableInterfaceOption propertyName={OptionKey.species} />
+        <TableInterfaceOption propertyName={OptionKey.origin} />
+        <TableInterfaceOption propertyName={OptionKey.status} /> */}
+        <Option propertyName={OptionKey.status} />
       </div>
       <div className="interface__actions">
         <div className="interface__action interface-item interface-item--action interface-item--action-blue">

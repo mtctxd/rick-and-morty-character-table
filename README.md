@@ -1,10 +1,16 @@
-## issues
+## issues / todos
+- [ ] search
+    - [ ] make debounced search
+- [ ] options
+    - [ ] scale-y for dropdown show for better optimisation
+    - [ ] add filtering for dropdows if larger than X items
+- [ ] edits
+- [ ] sort in table
+- [ ] pagination
 - [ ] hover on inputs
     - options
     - search
     - actions
 - [x] cleaner useGetAllCharacter
-- [ ] make debounced search
-- [ ] scale-y for dropdown show for better optimisation
 - [ ] some variable names are too long
     - [x]changePreparedCharacterList
