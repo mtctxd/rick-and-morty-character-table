@@ -1,4 +1,6 @@
 export interface IAppState {
+  charactersList: Character[],
+  preparedCharacterList: Character[],
   searchQuery: string;
 }
 interface Info {

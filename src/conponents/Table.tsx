@@ -1,11 +1,9 @@
-import { Character } from '../models.ts';
+import { useAppSelector } from '../redux/hooks';
 import CharacterInTable from './CharacterInTable';
 
-type Props = {
-  characters: Character[];
-};
+const Table = () => {
+  const { preparedCharacterList } = useAppSelector((store) => store.appSlice);
 
-const Table: React.FC<Props> = ({ characters }) => {
   return (
     <table className="table-app-table table">
       <thead className="table__heading">
@@ -21,7 +19,7 @@ const Table: React.FC<Props> = ({ characters }) => {
         </tr>
       </thead>
       <tbody>
-        {characters.map((characterFromList) => (
+        {preparedCharacterList.map((characterFromList) => (
           <CharacterInTable
             character={characterFromList}
             key={characterFromList.id}
