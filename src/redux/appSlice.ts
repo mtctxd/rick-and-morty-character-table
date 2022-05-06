@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getAllCharacters from '../feature/getAllCharacters';
-import { IAppState } from '../models.ts';
+import getOptions from '../feature/getOptions';
+import { IAppState, OptionKey } from '../models.ts';
 import { RootState } from './store';
 
 const initialState: IAppState = {
@@ -8,9 +9,9 @@ const initialState: IAppState = {
   preparedCharacterList: [],
   searchQuery: '',
   filterOptions: {
-    species: [],
-    origin: [],
-    status: [],
+    [OptionKey.origin]: [],
+    [OptionKey.species]: [],
+    [OptionKey.status]: [],
   }
 };
 
@@ -34,6 +35,9 @@ export const appSlice = createSlice({
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
       state.charactersList = payload;
       state.preparedCharacterList = payload;
+      state.filterOptions.species = getOptions(payload, OptionKey.species);
+      state.filterOptions.origin = getOptions(payload, OptionKey.origin);
+      state.filterOptions.status = getOptions(payload, OptionKey.status);
     });
   },
 });

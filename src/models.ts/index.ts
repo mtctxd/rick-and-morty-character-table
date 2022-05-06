@@ -6,9 +6,20 @@ export interface IAppState {
 }
 
 export interface IFilterOptions {
-  species: string[],
-  origin: Origin[],
-  status: string[],
+  [OptionKey.species]: any[],
+  [OptionKey.origin]: any[],
+  [OptionKey.status]: any[],
+}
+
+export enum OptionKey {
+  species = 'species',
+  origin = 'origin',
+  status = 'status'
+}
+
+type filterOption = {
+  name: string,
+  checked: boolean,
 }
 
 interface Info {
