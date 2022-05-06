@@ -1,9 +1,9 @@
+import CharacterSearch from "./CharacterSearch";
+
 const TableInterface = () => {
   return (
     <div className="table-app__interface interface">
-      <div className="interface__search interface-item interface-item--search">
-        Search
-      </div>
+      <CharacterSearch />
       <div className="interface__options">
         <div className="interface__option interface-item interface-item--option">
           Species

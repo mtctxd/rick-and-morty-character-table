@@ -10,15 +10,20 @@
   --secondary-blue-50: #BAC6D8;
   --primary-red-100: #BC2626;
   --border-rarius: 5px;
+  --primary-font: 'Oswald', sans-serif;
 }
 
 body {
   margin: 0;
   font-size: 16px;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--primary-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
+}
+
+input::placeholder {
+  font-family: var(--primary-font);
 }
 
 .container {
@@ -75,10 +80,21 @@ body {
   border: 1px solid #BAC6D8;
   border-radius: var(--border-rarius);
   font-size: 0.75rem;
+  font-weight: 400;
   background-color: var(--primary-white);
+
+  &:focus {
+    outline: none;
+  }
   
   &--search {
     color: var(--primary-anthracite-70);
+
+    &::placeholder {
+      font-size: 0.75rem;
+      font-weight: 400;
+
+    }
   }
 
   &--option {
@@ -86,6 +102,7 @@ body {
   }
 
   &--action {
+    font-weight: 500;
     color: white;
     border-color: rgba(0, 0, 0, 0.35);
   }

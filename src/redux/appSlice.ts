@@ -3,20 +3,20 @@ import { IAppState } from '../models.ts';
 import { RootState } from './store';
 
 const initialState: IAppState = {
-  value: 0,
+  searchQuery: '',
 };
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    changeSearchQuery: (state, { payload }) => {
+        state.searchQuery = payload;
     },
   },
 });
 
-export const { increment } = appSlice.actions;
+export const { changeSearchQuery } = appSlice.actions;
 
 export const selectApp = (state: RootState) => state.appSlice;
 

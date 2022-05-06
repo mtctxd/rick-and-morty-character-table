@@ -9,7 +9,7 @@ const getAllCharacters = async (): Promise<Character[]> => {
     Array(data.info.pages - 1)
       .fill(0)
       .map(async (item, index) => {
-        const validIteratorIndex = item + index + 1;
+        const validIteratorIndex = item + index + 2;
         const data = await fetch(
           `${API_RNM}/character/?page=${validIteratorIndex}`
         );

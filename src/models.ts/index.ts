@@ -1,5 +1,5 @@
 export interface IAppState {
-  value: number;
+  searchQuery: string;
 }
 interface Info {
   count: number;
