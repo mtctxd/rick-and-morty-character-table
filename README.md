@@ -6,6 +6,7 @@
 - [ ] edits
 - [ ] sort in table
 - [ ] pagination
+    - [ ] next and prev are not working sometimes
 - [ ] hover on inputs
     - options
     - search

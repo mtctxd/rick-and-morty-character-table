@@ -4,10 +4,10 @@ import { ITEMS_PER_PAGE } from '../constants';
 import { Character } from '../models.ts';
 import { deleteToggleMultiple } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import CharacterInTable from './CharacterInTable';
+import CharacterInList from './CharacterInList';
 
 const Table = () => {
-  const { preparedCharacterList } = useAppSelector((store) => store.appSlice);
+  const { preparedCharacterList, filterOptions, searchQuery } = useAppSelector((store) => store.appSlice);
   const dispatch = useAppDispatch();
 
   const [currentItems, setCurrentItems] = useState(null);
@@ -20,7 +20,7 @@ const Table = () => {
       (preparedCharacterList as any).slice(itemOffset, endOffset)
     );
     setPageCount(Math.ceil(preparedCharacterList.length / ITEMS_PER_PAGE));
-  }, [itemOffset, ITEMS_PER_PAGE, preparedCharacterList]);
+  }, [itemOffset, ITEMS_PER_PAGE, preparedCharacterList, searchQuery, filterOptions]);
 
   const handlePageClick = (event: any) => {
     const newOffset =
@@ -36,39 +36,54 @@ const Table = () => {
     console.log(event.target.checked);
   };
 
+  const paginationClassNames = {
+    containerClassName: 'pagination__container',
+    activeLinkClassName: 'pagination__active',
+    nextClassName: 'pagination__item pagination__buttons',
+    previousClassName: 'pagination__item pagination__buttons',
+    pageLinkClassName: 'pagination__item',
+    breakClassName: 'pagination__break',
+    disabledClassName: 'pagination__disabled-button'
+  };
+
   return (
-    <table className="table-app-table table">
-      <thead className="table__heading">
-        <tr>
-          <th>
-            <input type="checkbox" onChange={handleChange} />
-          </th>
-          <th>Name</th>
-          <th>Avatar</th>
-          <th>Origin</th>
-          <th>Epizod</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentItems &&
-          (currentItems as Character[]).map((characterFromList) => (
-            <CharacterInTable
-              character={characterFromList}
-              key={characterFromList.id}
-            />
-          ))}
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={() => null}
-        />
-      </tbody>
-    </table>
+    <>
+      <div className="list">
+        <ul className="list__container">
+          <li className="list__item list__item--heading">
+            <div className="list__item-cell list__item-cell--checkbox">
+              <input
+                type="checkbox"
+                className="checkbox "
+                onChange={handleChange}
+              />
+            </div>
+            <div className="list__item-cell">Name</div>
+            <div className="list__item-cell">Avatar</div>
+            <div className="list__item-cell">Origin</div>
+            <div className="list__item-cell">Epizode</div>
+            <div className="list__item-cell">Status</div>
+          </li>
+          {currentItems &&
+            (currentItems as Character[]).map((characterFromList) => (
+              <CharacterInList
+                character={characterFromList}
+                key={characterFromList.id}
+              />
+            ))}
+        </ul>
+      </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="&#62;"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}
+        previousLabel="&#60;"
+        renderOnZeroPageCount={() => null}
+        {...paginationClassNames}
+      />
+    </>
   );
 };
 

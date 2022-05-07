@@ -6,12 +6,13 @@ import {
   prepareCharacterList,
 } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import Table from './CharacterList';
-import TableInterface from './ListInterface';
+import List from './CharacterList';
+import ListInterface from './ListInterface';
 
 const Characters = () => {
-  const { searchQuery, charactersList, filterOptions } =
-    useAppSelector((store) => store.appSlice);
+  const { searchQuery, charactersList, filterOptions } = useAppSelector(
+    (store) => store.appSlice
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -27,11 +28,11 @@ const Characters = () => {
 
   return (
     <div className="container">
-      <div className="table-app">
-        <div className="table-app__container">
-          <div className="table-app__heading">Characters</div>
-          <TableInterface />
-          <Table />
+      <div className="list-app">
+        <div className="list-app__container">
+          <div className="list-app__heading">Characters</div>
+          <ListInterface />
+          <List />
         </div>
       </div>
     </div>
