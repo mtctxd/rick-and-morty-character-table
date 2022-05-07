@@ -109,10 +109,28 @@ export const appSlice = createSlice({
         return character;
       });
     },
+    deleteToggleMultiple: (state, { payload }) => {
+      if (payload) {
+        const shouldChangeIds = state.preparedCharacterList.map(
+          (character) => character.id
+        );
+
+        state.charactersList = state.charactersList.map((character) => {
+          if (shouldChangeIds.includes(character.id)) {
+            character.shouldDelete = payload;
+            console.log(character);
+          }
+
+          return character;
+        });
+      }
+    },
     deleteSelectedCharacters: (state) => ({
       ...state,
-      charactersList: state.charactersList.filter(character => !character.shouldDelete),
-    })
+      charactersList: state.charactersList.filter(
+        (character) => !character.shouldDelete
+      ),
+    }),
   },
   extraReducers: (builder) => {
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
@@ -129,6 +147,7 @@ export const {
   changeFilterOptions,
   filterByOptions,
   deleteCheckToggler,
+  deleteToggleMultiple,
   deleteSelectedCharacters,
 } = appSlice.actions;
 
