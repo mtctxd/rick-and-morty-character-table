@@ -1,7 +1,7 @@
 import { changeSearchQuery } from '../redux/appSlice';
 import { useAppDispatch } from '../redux/hooks';
 
-const TableInterfaceSearch = () => {
+const ListInterfaceSearch = () => {
   const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,4 +41,4 @@ const TableInterfaceSearch = () => {
   );
 };
 
-export default TableInterfaceSearch;
+export default ListInterfaceSearch;

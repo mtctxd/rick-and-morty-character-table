@@ -1,7 +1,7 @@
 import { deleteSelectedCharacters } from "../redux/appSlice";
 import { useAppDispatch } from "../redux/hooks";
 
-const TableInterfaceRemove = () => {
+const ListleInterfaceRemove = () => {
     const dispatch = useAppDispatch();
 
     const handleDelete = () => {
@@ -55,4 +55,4 @@ const TableInterfaceRemove = () => {
   );
 };
 
-export default TableInterfaceRemove;
+export default ListleInterfaceRemove;

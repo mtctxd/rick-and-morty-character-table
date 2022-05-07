@@ -15,7 +15,7 @@ type Props = {
   selectorName: string;
 };
 
-const TableInterfaceOption: React.FC<Props> = ({ selectorName }) => {
+const ListInterfaceOption: React.FC<Props> = ({ selectorName }) => {
   const { charactersList } = useAppSelector((store) => store.appSlice);
   const dispatch = useAppDispatch();
 
@@ -98,4 +98,4 @@ const TableInterfaceOption: React.FC<Props> = ({ selectorName }) => {
   );
 };
 
-export default TableInterfaceOption;
+export default ListInterfaceOption;

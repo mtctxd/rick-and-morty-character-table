@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import { Character } from '../models.ts';
 import { deleteCheckToggler } from '../redux/appSlice';
 import { useAppDispatch } from '../redux/hooks';
@@ -10,7 +9,7 @@ type Props = {
 const CharacterInTable: React.FC<Props> = ({ character }) => {
   const { name, image, origin, episode, status, shouldDelete, id } = character;
   const dispatch = useAppDispatch();
-
+  
   const handleChange = () => {
     dispatch(deleteCheckToggler(id));
   };
@@ -18,7 +17,11 @@ const CharacterInTable: React.FC<Props> = ({ character }) => {
   return (
     <tr>
       <td>
-        <input type="checkbox" checked={shouldDelete} onChange={handleChange} />
+        <input
+          type="checkbox"
+          checked={shouldDelete}
+          onChange={handleChange}
+        />
       </td>
       <td>{name}</td>
       <td>

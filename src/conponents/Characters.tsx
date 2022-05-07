@@ -6,8 +6,8 @@ import {
   prepareCharacterList,
 } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import Table from './Table';
-import TableInterface from './TableIntarface';
+import Table from './CharacterList';
+import TableInterface from './ListInterface';
 
 const Characters = () => {
   const { searchQuery, charactersList, filterOptions } =
