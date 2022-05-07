@@ -100,6 +100,19 @@ export const appSlice = createSlice({
           break;
       }
     },
+    deleteCheckToggler: (state, { payload }) => {
+      state.charactersList.map((character) => {
+        if (character.id === payload) {
+          character.shouldDelete = !character.shouldDelete;
+        }
+
+        return character;
+      });
+    },
+    deleteSelectedCharacters: (state) => ({
+      ...state,
+      charactersList: state.charactersList.filter(character => !character.shouldDelete),
+    })
   },
   extraReducers: (builder) => {
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
@@ -115,6 +128,8 @@ export const {
   filterBySearch,
   changeFilterOptions,
   filterByOptions,
+  deleteCheckToggler,
+  deleteSelectedCharacters,
 } = appSlice.actions;
 
 // should i use it???

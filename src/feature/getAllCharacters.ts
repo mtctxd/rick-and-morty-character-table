@@ -24,19 +24,20 @@ const getAllCharacters = async (): Promise<Character[]> => {
   const result = [...data.results, ...flattenedData];
 
   const preparedResult = await Promise.all(
-    result.map(async (item) => {
-      const {name, url} = item.origin;
+    result.map(async (character) => {
+      const {name, url} = character.origin;
 
       if (name === 'unknown') {
-        return item;
+        return character;
       }
 
       const entryData = await fetch(url);
       const entry = await entryData.json();
 
-      item.origin.entry = entry.type;
+      character.origin.entry = entry.type;
+      character.shouldDelete = false;
 
-      return item;
+      return character;
     })
   );
 

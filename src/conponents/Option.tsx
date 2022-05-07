@@ -2,9 +2,10 @@ import Select, { components, SingleValue } from 'react-select';
 import capitalize from '../feature/capitalize';
 import makeOptionsList from '../feature/makeList';
 import {
-  PLACEHOLDER_FONT_SIZE,
+  SELECT_FONT_SIZE,
   SELECT_FONT_COLOR,
   SELECT_WIDTH,
+  SELECT_PLACEHOLDER_COLOR,
 } from '../jsStyles';
 import { filterOption } from '../models.ts';
 import { changeFilterOptions } from '../redux/appSlice';
@@ -14,7 +15,7 @@ type Props = {
   selectorName: string;
 };
 
-const Option: React.FC<Props> = ({ selectorName }) => {
+const TableInterfaceOption: React.FC<Props> = ({ selectorName }) => {
   const { charactersList } = useAppSelector((store) => store.appSlice);
   const dispatch = useAppDispatch();
 
@@ -52,10 +53,12 @@ const Option: React.FC<Props> = ({ selectorName }) => {
     container: (base: any) => ({
       ...base,
       width: SELECT_WIDTH,
+      
+      fontSize: SELECT_FONT_SIZE,
     }),
     control: (base: any) => ({
       ...base,
-      fontSize: PLACEHOLDER_FONT_SIZE,
+      fontSize: SELECT_FONT_SIZE,
       width: SELECT_WIDTH,
     }),
     singleValue: (base: any) => ({
@@ -69,6 +72,10 @@ const Option: React.FC<Props> = ({ selectorName }) => {
       '& input': {
         font: 'inherit',
       },
+    }),
+    placeholder: (base: any) => ({
+      ...base,
+      color: SELECT_PLACEHOLDER_COLOR,
     }),
   };
 
@@ -91,4 +98,4 @@ const Option: React.FC<Props> = ({ selectorName }) => {
   );
 };
 
-export default Option;
+export default TableInterfaceOption;

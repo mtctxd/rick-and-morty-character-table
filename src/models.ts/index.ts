@@ -47,6 +47,7 @@ export interface Character {
   episode: string[];
   url: string;
   created: string;
+  shouldDelete: boolean
 }
 
 export interface ICharactersFromApi {

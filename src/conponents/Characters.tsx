@@ -10,7 +10,7 @@ import Table from './Table';
 import TableInterface from './TableIntarface';
 
 const Characters = () => {
-  const { searchQuery, charactersList, preparedCharacterList, filterOptions } =
+  const { searchQuery, charactersList, filterOptions } =
     useAppSelector((store) => store.appSlice);
   const dispatch = useAppDispatch();
 
@@ -21,12 +21,9 @@ const Characters = () => {
   useEffect(() => {
     // dispatchers should be in that order !!!
     dispatch(prepareCharacterList());
-
     dispatch(filterByOptions());
     dispatch(filterBySearch());
-
-    
-  }, [searchQuery, filterBySearch, filterOptions]);
+  }, [searchQuery, filterBySearch, filterOptions, charactersList]);
 
   return (
     <div className="container">
