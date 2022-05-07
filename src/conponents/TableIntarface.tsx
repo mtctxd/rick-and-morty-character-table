@@ -1,7 +1,6 @@
 import CharacterSearch from './TableInterfaceSearch';
-import TableInterfaceOption from './TableInterfaceOption';
-import { OptionKey } from '../models.ts';
 import Option from './Option';
+import { useAppSelector } from '../redux/hooks';
 
 const TableInterface = () => {
   return (
@@ -11,7 +10,9 @@ const TableInterface = () => {
         {/* <TableInterfaceOption propertyName={OptionKey.species} />
         <TableInterfaceOption propertyName={OptionKey.origin} />
         <TableInterfaceOption propertyName={OptionKey.status} /> */}
-        <Option propertyName={OptionKey.status} />
+        <Option selectorName={'species'}/>
+        <Option selectorName={'origin'}/>
+        <Option selectorName={'status'}/>
       </div>
       <div className="interface__actions">
         <div className="interface__action interface-item interface-item--action interface-item--action-blue">

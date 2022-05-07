@@ -5,20 +5,20 @@ type Props = {
 };
 
 const CharacterInTable: React.FC<Props> = ({ character }) => {
-  const { id, name, image, origin, episode, status } = character;
-  
+  const { name, image, origin, episode, status } = character;
+
   return (
     <tr>
-      <td>{id}</td>
+      <td>
+        <input type="checkbox" />
+      </td>
       <td>{name}</td>
       <td>
         <img src={image} alt={name} />
       </td>
       <td>
         <div>{origin.name}</div>
-        {origin.entry && (
-          <div>{origin.entry}</div>
-        )}
+        {origin.entry && <div>{origin.entry}</div>}
       </td>
       <td>{name}</td>
       <td>{status}</td>

@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getAllCharacters from '../feature/getAllCharacters';
-import getOptions from '../feature/getOptions';
-import isOptionsFiled from '../feature/isOptionsFilled';
-import preparedOptions from '../feature/prepareOptions';
-import { Character, IAppState, OptionKey } from '../models.ts';
+import { Character, IAppState } from '../models.ts';
 import { RootState } from './store';
 
 const initialState: IAppState = {
@@ -11,9 +8,9 @@ const initialState: IAppState = {
   preparedCharacterList: [],
   searchQuery: '',
   filterOptions: {
-    [OptionKey.origin]: {},
-    [OptionKey.species]: {},
-    [OptionKey.status]: {},
+    origin: '',
+    species: '',
+    status: '',
   },
 };
 
@@ -29,9 +26,9 @@ export const appSlice = createSlice({
     prepareCharacterList: (state) => {
       state.preparedCharacterList = state.charactersList;
     },
-    filterBySearch: (state, action) => {
+    filterBySearch: (state) => {
       if (state.searchQuery) {
-        state.preparedCharacterList = (action.payload as Character[]).filter(
+        state.preparedCharacterList = state.preparedCharacterList.filter(
           (character) => {
             const checkCondition = character.name
               .split(' ')
@@ -44,31 +41,70 @@ export const appSlice = createSlice({
         );
       }
     },
-    filterByOptions: (state, action) => {
-      state.preparedCharacterList = action.payload;
+    filterByOptions: (state) => {
+      Object.entries(state.filterOptions).map(([key, value]) => {
+        if (value) {
+          switch (key) {
+            case 'species':
+              state.preparedCharacterList = state.preparedCharacterList.filter(
+                (character) => character.species === value
+              );
+              break;
+            case 'origin':
+              state.preparedCharacterList = state.preparedCharacterList.filter(
+                (character) => character.origin.name === value
+              );
+              break;
+            case 'status':
+              state.preparedCharacterList = state.preparedCharacterList.filter(
+                (character) => character.status === value
+              );
+              break;
+
+            default:
+              break;
+          }
+        }
+      });
     },
     changeSearchQuery: (state, { payload }) => {
       state.searchQuery = payload;
     },
-    toggleOption: (state, action) => {
-      const { name, status, propertyName } = action.payload;
+    changeFilterOptions: (state, { payload }) => {
+      const { event, selectorName } = payload;
 
-      state.filterOptions = {
-        ...state.filterOptions,
-        [propertyName]: {
-          ...state.filterOptions[propertyName],
-          [name]: !status,
-        },
-      };
+      switch (selectorName) {
+        case 'species':
+          if (event?.value) {
+            state.filterOptions.species = event.value;
+            break;
+          }
+          state.filterOptions.species = '';
+          break;
+        case 'origin':
+          if (event?.value) {
+            state.filterOptions.origin = event.value;
+            break;
+          }
+          state.filterOptions.origin = '';
+          break;
+        case 'status':
+          if (event?.value) {
+            state.filterOptions.status = event.value;
+            break;
+          }
+          state.filterOptions.status = '';
+          break;
+
+        default:
+          break;
+      }
     },
   },
   extraReducers: (builder) => {
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
       state.charactersList = payload;
       state.preparedCharacterList = payload;
-      state.filterOptions.species = getOptions(payload, OptionKey.species);
-      state.filterOptions.origin = getOptions(payload, OptionKey.origin);
-      state.filterOptions.status = getOptions(payload, OptionKey.status);
     });
   },
 });
@@ -77,7 +113,7 @@ export const {
   prepareCharacterList,
   changeSearchQuery,
   filterBySearch,
-  toggleOption,
+  changeFilterOptions,
   filterByOptions,
 } = appSlice.actions;
 

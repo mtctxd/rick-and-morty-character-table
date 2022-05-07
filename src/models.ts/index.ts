@@ -2,24 +2,18 @@ export interface IAppState {
   charactersList: Character[],
   preparedCharacterList: Character[],
   searchQuery: string;
-  filterOptions: IFilterOptions<filterOption>,
+  filterOptions: IFilterOptions,
 }
 
-export interface IFilterOptions<T = filterOption> {
-  [key: string]: T,
-  // [OptionKey.species]: filterOption,
-  // [OptionKey.origin]: filterOption,
-  // [OptionKey.status]: filterOption,
+export interface IFilterOptions {
+  origin: string,
+  status: string,
+  species: string,
 }
 
-export enum OptionKey {
-  species = 'species',
-  origin = 'origin',
-  status = 'status'
-}
-
-interface filterOption {
-  [key: string]: boolean
+export interface filterOption {
+  value: string,
+  label: string,
 }
 
 interface Info {

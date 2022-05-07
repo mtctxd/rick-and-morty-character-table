@@ -1,7 +1,4 @@
 import { useEffect } from 'react';
-import isOptionsFiled from '../feature/isOptionsFilled';
-import preparedOptions from '../feature/prepareOptions';
-import { IFilterOptions, OptionKey } from '../models.ts';
 import {
   filterByOptions,
   filterBySearch,
@@ -13,7 +10,7 @@ import Table from './Table';
 import TableInterface from './TableIntarface';
 
 const Characters = () => {
-  const { searchQuery, charactersList, filterOptions, preparedCharacterList } =
+  const { searchQuery, charactersList, preparedCharacterList, filterOptions } =
     useAppSelector((store) => store.appSlice);
   const dispatch = useAppDispatch();
 
@@ -22,43 +19,11 @@ const Characters = () => {
   }, []);
 
   useEffect(() => {
-    const options = preparedOptions(filterOptions);
-
     // dispatchers should be in that order !!!
     dispatch(prepareCharacterList());
 
-    if (isOptionsFiled(options)) {
-      Object.entries(options).forEach(([key, value]) => {
-       
-        const newCharacterList = charactersList
-            .map((character) => {
-              let optionKey = character.species;
-
-              switch (key) {
-                case OptionKey.origin:
-                  optionKey = character.origin.name;
-                  break;
-                case OptionKey.species:
-                  optionKey = character.species;
-                  break;
-                case OptionKey.status:
-                  optionKey = character.status;
-                  break;
-              
-                default:
-                  break;
-              }
-
-              if (value.includes(optionKey)) {
-                return character;
-              }
-            })
-            .filter((item) => item !== undefined);
-
-          dispatch(filterByOptions(newCharacterList));
-      });
-    }
-    dispatch(filterBySearch(preparedCharacterList));
+    dispatch(filterByOptions());
+    dispatch(filterBySearch());
 
     
   }, [searchQuery, filterBySearch, filterOptions]);

@@ -2,8 +2,7 @@
 - [ ] search
     - [ ] make debounced search
 - [ ] options
-    - [ ] scale-y for dropdown show for better optimisation
-    - [ ] add filtering for dropdows if larger than X items
+    - [ ] make multy
 - [ ] edits
 - [ ] sort in table
 - [ ] pagination

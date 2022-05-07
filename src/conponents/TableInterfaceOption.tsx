@@ -1,24 +1,13 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import capitalize from '../feature/capitalize';
-import getOptions from '../feature/getOptions';
-import { IFilterOptions } from '../models.ts';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { toggleOption } from '../redux/appSlice';
 
-type Props = {
-  propertyName: keyof IFilterOptions;
-};
-
-const TableInterfaceOption: React.FC<Props> = ({ propertyName }) => {
-  const filterOptionsList = useAppSelector(
-    (store) => store.appSlice.filterOptions[propertyName]
-  );
+const TableInterfaceOption = () => {
   const dispatch = useAppDispatch();
 
   return (
     <div className="interface__option interface-item interface-item--option">
-      {capitalize(propertyName as string)}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="9"
@@ -31,23 +20,6 @@ const TableInterfaceOption: React.FC<Props> = ({ propertyName }) => {
           fill="#5F6569"
         />
       </svg>
-      <div className="interface-item__dropdown">
-        {Object.entries(filterOptionsList).map(([name, status]) => {
-          return (
-            <div
-              key={name}
-              className={classNames('interface-item__dropdown-item', {
-                'interface-item__dropdown-item--checked': status,
-              })}
-              onClick={() =>
-                dispatch(toggleOption({ name, status, propertyName }))
-              }
-            >
-              {name}
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 };
