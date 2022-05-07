@@ -7,7 +7,9 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import CharacterInList from './CharacterInList';
 
 const Table = () => {
-  const { preparedCharacterList, filterOptions, searchQuery } = useAppSelector((store) => store.appSlice);
+  const { preparedCharacterList, filterOptions, searchQuery } = useAppSelector(
+    (store) => store.appSlice
+  );
   const dispatch = useAppDispatch();
 
   const [currentItems, setCurrentItems] = useState(null);
@@ -20,7 +22,13 @@ const Table = () => {
       (preparedCharacterList as any).slice(itemOffset, endOffset)
     );
     setPageCount(Math.ceil(preparedCharacterList.length / ITEMS_PER_PAGE));
-  }, [itemOffset, ITEMS_PER_PAGE, preparedCharacterList, searchQuery, filterOptions]);
+  }, [
+    itemOffset,
+    ITEMS_PER_PAGE,
+    preparedCharacterList,
+    searchQuery,
+    filterOptions,
+  ]);
 
   const handlePageClick = (event: any) => {
     const newOffset =
@@ -43,7 +51,7 @@ const Table = () => {
     previousClassName: 'pagination__item pagination__buttons',
     pageLinkClassName: 'pagination__item',
     breakClassName: 'pagination__break',
-    disabledClassName: 'pagination__disabled-button'
+    disabledClassName: 'pagination__disabled-button',
   };
 
   return (
@@ -59,10 +67,12 @@ const Table = () => {
               />
             </div>
             <div className="list__item-cell">Name</div>
-            <div className="list__item-cell">Avatar</div>
-            <div className="list__item-cell">Origin</div>
-            <div className="list__item-cell">Epizode</div>
-            <div className="list__item-cell">Status</div>
+            <div className="list__item-cell list__item-cell-combined">
+              <div className="list__item-cell">Avatar</div>
+              <div className="list__item-cell">Origin</div>
+              <div className="list__item-cell">Epizode</div>
+              <div className="list__item-cell">Status</div>
+            </div>
           </li>
           {currentItems &&
             (currentItems as Character[]).map((characterFromList) => (

@@ -34,6 +34,11 @@ interface Location {
   url: string;
 }
 
+interface Episode {
+  url: string[],
+  names: string[], 
+}
+
 export interface Character {
   id: number;
   name: string;
@@ -44,13 +49,23 @@ export interface Character {
   origin: Origin;
   location: Location;
   image: string;
-  episode: string[];
+  episode: Episode;
   url: string;
   created: string;
-  shouldDelete: boolean
+  shouldDelete: boolean;
 }
 
 export interface ICharactersFromApi {
   info: Info;
   results: Character[];
+}
+
+export interface IEpisodeFromApi {
+  id: number,
+  name: string,
+  air_date: string,
+  episode: string,
+  characters: string[],
+  url: string,
+  created: string,
 }

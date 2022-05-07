@@ -1,5 +1,5 @@
-import { API_RNM } from "../constants";
-import { Character } from "../models.ts";
+import { API_RNM } from '../constants';
+import { Character } from '../models.ts';
 
 const getAllCharacters = async (): Promise<Character[]> => {
   let res = await fetch(`${API_RNM}/character/`);
@@ -25,17 +25,29 @@ const getAllCharacters = async (): Promise<Character[]> => {
 
   const preparedResult = await Promise.all(
     result.map(async (character) => {
-      const {name, url} = character.origin;
+      const { name, url } = character.origin;
+      const { episode } = character;
 
-      if (name === 'unknown') {
-        return character;
+      if (name !== 'unknown') {
+        const entryData = await fetch(url);
+        const entry = await entryData.json();
+        character.origin.entry = entry.type;
       }
 
-      const entryData = await fetch(url);
-      const entry = await entryData.json();
+      const episodeNames = await Promise.all(
+        episode.map(async (episodeUrl: string) => {
+          const episodeData = await fetch(episodeUrl);
+          const episodeJson = await episodeData.json();
 
-      character.origin.entry = entry.type;
+          return episodeJson.name;
+        })
+      )
+
       character.shouldDelete = false;
+      character.episode = {
+        url: episode,
+        names: episodeNames,
+      }
 
       return character;
     })

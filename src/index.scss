@@ -7,8 +7,8 @@
   --primary-anthracite-25: #c6c8c9;
   --primary-white: #ffffff;
   --secondary-white-50: #dde3ec;
-  --primary-blue-100: #0088da;
   --secondary-white-25: #eef1f5;
+  --primary-blue-100: #0088da;
   --primary-blue-80: #2684ff;
   --primary-blue-50: #8ec1e0;
   --primary-blue-25: #b9cbd6;
@@ -82,7 +82,7 @@ input::placeholder {
   &__item {
     height: 83px;
     display: grid;
-    grid-template-columns: 66px 250px auto auto auto auto;
+    grid-template-columns: 66px 250px auto;
     border-bottom: 1px solid var(--secondary-blue-25);
 
     &--heading {
@@ -104,6 +104,11 @@ input::placeholder {
     display: flex;
     gap: 8px;
     flex-direction: column;
+  }
+
+  &__item-cell-combined {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -226,6 +231,6 @@ input::placeholder {
   }
 
   &__disabled-button {
-    color: var(--primary-anthracite-70);
+    color: var(--primary-anthracite-25);
   }
 }
