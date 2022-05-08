@@ -14,3 +14,4 @@
 - [x] cleaner useGetAllCharacter
 - [ ] some variable names are too long
     - [x]changePreparedCharacterList
+- [X] Next time I should think about making Characters list as object where key will be id to this character

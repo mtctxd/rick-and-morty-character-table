@@ -12,7 +12,7 @@ type Props = {
 };
 
 const CharacterInList: React.FC<Props> = ({ character }) => {
-  const { name, image, origin, episode, status, shouldDelete, id, species } =
+  const { name, image, origin, episode, status, isChecked, id, species } =
     character;
   const dispatch = useAppDispatch();
 
@@ -29,7 +29,7 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
           type="checkbox"
           className="checkbox"
           onChange={handleChange}
-          checked={shouldDelete}
+          checked={isChecked}
         />
       </div>
       <div className="list__item-cell">
@@ -53,7 +53,7 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
         <div className="list__item-cell">
           <div className="list__item-cell-container">
             {episode.names.slice(0, 2).map((episodeName) => (
-              <div>{cutWord(episodeName)}</div>
+              <div key={episodeName}>{cutWord(episodeName)}</div>
             ))}
           </div>
         </div>

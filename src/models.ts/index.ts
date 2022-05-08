@@ -3,6 +3,7 @@ export interface IAppState {
   preparedCharacterList: Character[];
   searchQuery: string;
   filterOptions: IFilterOptions;
+  headerCheckboxStatus: boolean;
 }
 
 export interface IFilterOptions {
@@ -52,7 +53,7 @@ export interface Character {
   episode: Episode;
   url: string;
   created: string;
-  shouldDelete: boolean;
+  isChecked: boolean;
 }
 
 export interface ICharactersFromApi {

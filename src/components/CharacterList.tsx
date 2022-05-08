@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import CharacterInList from './CharacterInList';
 
 const Table = () => {
-  const { preparedCharacterList, filterOptions, searchQuery } = useAppSelector(
+  const { preparedCharacterList, filterOptions, searchQuery, headerCheckboxStatus } = useAppSelector(
     (store) => store.appSlice
   );
   const dispatch = useAppDispatch();
@@ -36,9 +36,8 @@ const Table = () => {
     setItemOffset(newOffset);
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(deleteToggleMultiple(event.target.checked));
-    console.log(event.target.checked);
+  const handleChange = () => {
+    dispatch(deleteToggleMultiple({ currentItems}));
   };
 
   const paginationClassNames = {
@@ -61,6 +60,7 @@ const Table = () => {
                 type="checkbox"
                 className="checkbox "
                 onChange={handleChange}
+                checked={headerCheckboxStatus}
               />
             </div>
             <div className="list__item-cell">Name</div>

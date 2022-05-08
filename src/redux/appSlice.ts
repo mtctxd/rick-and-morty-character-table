@@ -12,6 +12,7 @@ const initialState: IAppState = {
     species: '',
     status: '',
   },
+  headerCheckboxStatus: false,
 };
 
 export const initialCharactersFetch = createAsyncThunk(
@@ -103,33 +104,32 @@ export const appSlice = createSlice({
     deleteCheckToggler: (state, { payload }) => {
       state.charactersList.map((character) => {
         if (character.id === payload) {
-          character.shouldDelete = !character.shouldDelete;
+          character.isChecked = !character.isChecked;
         }
 
         return character;
       });
     },
     deleteToggleMultiple: (state, { payload }) => {
-      if (payload) {
-        const shouldChangeIds = state.preparedCharacterList.map(
-          (character) => character.id
-        );
+      let { currentItems } = payload;
+      state.headerCheckboxStatus = !state.headerCheckboxStatus;
 
-        state.charactersList = state.charactersList.map((character) => {
-          if (shouldChangeIds.includes(character.id)) {
-            character.shouldDelete = payload;
-            console.log(character);
+      currentItems.forEach((item: Character) => {
+        state.charactersList.map((character) => {
+          if (character.id === item.id) {
+            character.isChecked = state.headerCheckboxStatus;
           }
 
           return character;
         });
-      }
+      });
     },
     deleteSelectedCharacters: (state) => ({
       ...state,
       charactersList: state.charactersList.filter(
-        (character) => !character.shouldDelete
+        (character) => !character.isChecked
       ),
+      headerCheckboxStatus: false,
     }),
   },
   extraReducers: (builder) => {
