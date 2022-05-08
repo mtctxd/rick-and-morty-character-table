@@ -1,19 +1,19 @@
 export interface IAppState {
-  charactersList: Character[],
-  preparedCharacterList: Character[],
+  charactersList: Character[];
+  preparedCharacterList: Character[];
   searchQuery: string;
-  filterOptions: IFilterOptions,
+  filterOptions: IFilterOptions;
 }
 
 export interface IFilterOptions {
-  origin: string,
-  status: string,
-  species: string,
+  origin: string;
+  status: string;
+  species: string;
 }
 
 export interface filterOption {
-  value: string,
-  label: string,
+  value: string;
+  label: string;
 }
 
 interface Info {
@@ -26,7 +26,7 @@ interface Info {
 interface Origin {
   name: string;
   url: string;
-  entry?: string,
+  entry?: string;
 }
 
 interface Location {
@@ -35,14 +35,14 @@ interface Location {
 }
 
 interface Episode {
-  url: string[],
-  names: string[], 
+  url: string[];
+  names: string[];
 }
 
 export interface Character {
   id: number;
   name: string;
-  status: string;
+  status: 'Alive' | 'Dead' | 'unknown';
   species: string;
   type: string;
   gender: string;
@@ -61,11 +61,11 @@ export interface ICharactersFromApi {
 }
 
 export interface IEpisodeFromApi {
-  id: number,
-  name: string,
-  air_date: string,
-  episode: string,
-  characters: string[],
-  url: string,
-  created: string,
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
 }

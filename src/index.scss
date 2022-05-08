@@ -104,6 +104,11 @@ input::placeholder {
     display: flex;
     gap: 8px;
     flex-direction: column;
+
+    &--horisontal {
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   &__item-cell-combined {

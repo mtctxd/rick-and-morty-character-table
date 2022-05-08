@@ -33,9 +33,6 @@ const Table = () => {
   const handlePageClick = (event: any) => {
     const newOffset =
       (event.selected * ITEMS_PER_PAGE) % preparedCharacterList.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 

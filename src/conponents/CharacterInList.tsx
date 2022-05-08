@@ -2,6 +2,7 @@ import cutWord from '../feature/cutWord';
 import { Character } from '../models.ts';
 import { deleteCheckToggler } from '../redux/appSlice';
 import { useAppDispatch } from '../redux/hooks';
+import StatusIcon from './StatusIcon';
 
 type Props = {
   character: Character;
@@ -19,7 +20,12 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
   return (
     <li className="list__item">
       <div className="list__item-cell list__item-cell--checkbox">
-        <input type="checkbox" className="checkbox" onChange={handleChange} checked={shouldDelete}/>
+        <input
+          type="checkbox"
+          className="checkbox"
+          onChange={handleChange}
+          checked={shouldDelete}
+        />
       </div>
       <div className="list__item-cell">
         <div className="list__item-cell-container">
@@ -37,8 +43,19 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
             <div>{origin.entry && cutWord(origin.entry)}</div>
           </div>
         </div>
-        <div className="list__item-cell">{status}</div>
-        <div className="list__item-cell">{status}</div>
+        <div className="list__item-cell">
+          <div className="list__item-cell-container">
+            {episode.names.slice(0, 2).map((episodeName) => (
+              <div>{cutWord(episodeName)}</div>
+            ))}
+          </div>
+        </div>
+        <div className="list__item-cell">
+          <div className="list__item-cell-container list__item-cell-container--horisontal">
+            <StatusIcon status={status} />
+            {status}
+          </div>
+        </div>
       </div>
     </li>
   );
