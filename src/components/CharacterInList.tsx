@@ -2,6 +2,9 @@ import cutWord from '../feature/cutWord';
 import { Character } from '../models.ts';
 import { deleteCheckToggler } from '../redux/appSlice';
 import { useAppDispatch } from '../redux/hooks';
+
+import classNames from 'classnames';
+
 import StatusIcon from './StatusIcon';
 
 type Props = {
@@ -18,7 +21,9 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
   };
 
   return (
-    <li className="list__item">
+    <li className={classNames('list__item', {
+      'list__item--background-grey': status === 'Dead'
+    })}>
       <div className="list__item-cell list__item-cell--checkbox">
         <input
           type="checkbox"
@@ -29,8 +34,8 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
       </div>
       <div className="list__item-cell">
         <div className="list__item-cell-container">
-          <div>{cutWord(name)}</div>
-          <div>{cutWord(species)}</div>
+          <div className="list__word">{cutWord(name)}</div>
+          <div className="list__word--secondary">{cutWord(species)}</div>
         </div>
       </div>
       <div className="list__item-cell list__item-cell-combined">
@@ -39,8 +44,10 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
         </div>
         <div className="list__item-cell">
           <div className="list__item-cell-container">
-            <div>{cutWord(origin.name)}</div>
-            <div>{origin.entry && cutWord(origin.entry)}</div>
+            <div className="list__word">{cutWord(origin.name)}</div>
+            <div className="list__word--secondary">
+              {origin.entry && cutWord(origin.entry)}
+            </div>
           </div>
         </div>
         <div className="list__item-cell">
@@ -53,7 +60,9 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
         <div className="list__item-cell">
           <div className="list__item-cell-container list__item-cell-container--horisontal">
             <StatusIcon status={status} />
-            {status}
+            <span className={classNames('list__word-status', {
+              'list__word-status--unknown': status === 'unknown'
+            })}>{status}</span>
           </div>
         </div>
       </div>

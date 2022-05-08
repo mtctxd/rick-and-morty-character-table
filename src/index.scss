@@ -13,7 +13,8 @@
   --primary-blue-50: #8ec1e0;
   --primary-blue-25: #b9cbd6;
   --secondary-blue-50: #bac6d8;
-  --secondary-blue-25: #E5EAF0;
+  --secondary-blue-25: #e5eaf0;
+  --secondary-blue-5: #F6F8FA;
   --primary-red-100: #bc2626;
   --border-rarius: 5px;
   --primary-font: 'Oswald', sans-serif;
@@ -84,9 +85,15 @@ input::placeholder {
     display: grid;
     grid-template-columns: 66px 250px auto;
     border-bottom: 1px solid var(--secondary-blue-25);
+    font-size: 15px;
+    background-color: var(--primary-white);
 
     &--heading {
       height: 42px;
+    }
+
+    &--background-grey {
+      background-color: var(--secondary-blue-5);
     }
   }
 
@@ -97,6 +104,24 @@ input::placeholder {
 
     &--checkbox {
       justify-content: center;
+    }
+  }
+
+  &__word {
+    font-weight: 500;
+
+    &--secondary {
+      font-weight: 400;
+      color: var(--primary-anthracite-80);
+    }
+  }
+
+  &__word-status {
+    font-weight: 500;
+    font-size: 14px;
+
+    &--unknown {
+      color: var(--primary-anthracite-70);
     }
   }
 
@@ -124,6 +149,7 @@ input::placeholder {
 
   &__search {
     margin-right: 48px;
+    border: none;
   }
 
   &__options {
@@ -147,7 +173,6 @@ input::placeholder {
   width: 140px;
   font-size: 0.75rem;
   font-weight: 400;
-  border: 1px solid var(--secondary-blue-50);
   border-radius: var(--border-rarius);
   background-color: var(--primary-white);
 
@@ -181,6 +206,7 @@ input::placeholder {
   &__action {
     width: 156px;
     border-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--secondary-blue-50);
   }
 
   &__action-word {

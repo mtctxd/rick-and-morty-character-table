@@ -1,7 +1,7 @@
 // import { useAppDispatch, useAppSelector } from './redux/hooks'
 // import { useGetCharactersQuery } from './redux/rnmApi';
 
-import Characters from './conponents/Characters';
+import Characters from './components/Characters';
 
 const App = () => {
   // const {value} = useAppSelector(store => store.appSlice);
