@@ -55,8 +55,8 @@ const Table = () => {
   };
 
   const handleSortClick = (type: SortTypes) => {
-    dispatch(sortInitialList(type))
-  }
+    dispatch(sortInitialList(type));
+  };
 
   return (
     <>
@@ -71,28 +71,41 @@ const Table = () => {
                 checked={headerCheckboxStatus}
               />
             </div>
-            <div className="list__item-cell list__item-cell--with-sort"
-            onClick={() => handleSortClick('name')}
+            <div
+              className="list__item-cell list__item-cell--with-sort"
+              onClick={() => handleSortClick('name')}
             >
               Name
-              <SortSVGIcon sortName='name' />
+              <SortSVGIcon sortName="name" />
             </div>
             <div className="list__item-cell-combined">
-              <div className="list__item-cell list__item-cell--with-sort">
-                Avatar
-                <SortSVGIcon sortName='location' />
+              <div
+                className="list__item-cell list__item-cell--with-sort"
+                onClick={() => handleSortClick('location')}
+              >
+                Avatar / Location
+                <SortSVGIcon sortName="location" />
               </div>
-              <div className="list__item-cell list__item-cell--with-sort" onClick={() => handleSortClick('origin')}>
+              <div
+                className="list__item-cell list__item-cell--with-sort"
+                onClick={() => handleSortClick('origin')}
+              >
                 Origin
-                <SortSVGIcon sortName='origin' />
+                <SortSVGIcon sortName="origin" />
               </div>
-              <div className="list__item-cell list__item-cell--with-sort" onClick={() => handleSortClick('episode')}>
+              <div
+                className="list__item-cell list__item-cell--with-sort"
+                onClick={() => handleSortClick('episode')}
+              >
                 Episode
-                <SortSVGIcon sortName='episode' />
+                <SortSVGIcon sortName="episode" />
               </div>
-              <div className="list__item-cell list__item-cell--with-sort" onClick={() => handleSortClick('status')}>
+              <div
+                className="list__item-cell list__item-cell--with-sort"
+                onClick={() => handleSortClick('status')}
+              >
                 Status
-                <SortSVGIcon sortName='status' />
+                <SortSVGIcon sortName="status" />
               </div>
             </div>
           </li>

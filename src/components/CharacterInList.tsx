@@ -6,6 +6,8 @@ import { useAppDispatch } from '../redux/hooks';
 import classNames from 'classnames';
 
 import StatusIcon from './StatusIcon';
+import { useState } from 'react';
+import CharacterLocationHover from './CharacterLocationHover';
 
 type Props = {
   character: Character;
@@ -15,6 +17,7 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
   const { name, image, origin, episode, status, isChecked, id, species } =
     character;
   const dispatch = useAppDispatch();
+  const [showLocation, setShowLocation] = useState(false);
 
   const handleChange = () => {
     dispatch(deleteCheckToggler(id));
@@ -53,8 +56,15 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
         </div>
       </div>
       <div className="list__item-cell list__item-cell-combined">
-        <div className="list__item-cell">
+        <div
+          className="list__item-cell"
+          onMouseEnter={() => setShowLocation(true)}
+          onMouseLeave={() => setShowLocation(false)}
+        >
           <img src={image} alt={name} className="list__image" />
+          {showLocation && (
+            <CharacterLocationHover character={character} />
+          )}
         </div>
         <div className="list__item-cell">
           <div className="list__item-cell-container">

@@ -1,4 +1,4 @@
-import { IAppState, SortTypes } from "../models.ts";
+import { IAppState, SortTypes } from '../models.ts';
 
 const manageSort = (state: IAppState, payload: SortTypes) => {
   switch (payload) {
@@ -58,6 +58,19 @@ const manageSort = (state: IAppState, payload: SortTypes) => {
           character.status > comparsionCharacter.status ? 1 : -1
         );
         state.sortTypes.status.isReversed = !state.sortTypes.status.isReversed;
+      }
+      break;
+    case 'location':
+      if (state.sortTypes.location.isReversed) {
+        state.charactersList.sort((character, comparsionCharacter) =>
+          character.location.name > comparsionCharacter.location.name ? -1 : 1
+        );
+        state.sortTypes.location.isReversed = !state.sortTypes.location.isReversed;
+      } else {
+        state.charactersList.sort((character, comparsionCharacter) =>
+          character.location.name > comparsionCharacter.location.name ? 1 : -1
+        );
+        state.sortTypes.location.isReversed = !state.sortTypes.location.isReversed;
       }
       break;
 

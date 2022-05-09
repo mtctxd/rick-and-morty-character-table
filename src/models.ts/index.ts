@@ -42,6 +42,7 @@ interface Origin {
 interface Location {
   name: string;
   url: string;
+  type: string;
 }
 
 interface Episode {

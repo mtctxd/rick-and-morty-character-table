@@ -25,11 +25,10 @@ const getAllCharacters = async (): Promise<Character[]> => {
 
   const preparedResult = await Promise.all(
     result.map(async (character) => {
-      const { name, url } = character.origin;
-      const { episode } = character;
+      const { origin, episode, location } = character;
 
-      if (name !== 'unknown') {
-        const entryData = await fetch(url);
+      if (origin.name !== 'unknown') {
+        const entryData = await fetch(origin.url);
         const entry = await entryData.json();
         character.origin.entry = entry.type;
       }
@@ -41,13 +40,20 @@ const getAllCharacters = async (): Promise<Character[]> => {
 
           return episodeJson.name;
         })
-      )
+      );
+
+      if (location.url) {
+        const locationTypeData = await fetch(location.url);
+        const locationData = await locationTypeData.json();
+
+        character.location.type = locationData.type;
+      }
 
       character.shouldDelete = false;
       character.episode = {
         url: episode,
         names: episodeNames,
-      }
+      };
 
       return character;
     })
