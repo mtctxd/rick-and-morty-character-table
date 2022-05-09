@@ -7,6 +7,7 @@ const ListleInterfaceRemove = () => {
     const handleDelete = () => {
         dispatch(deleteSelectedCharacters())
     }
+
   return (
     <button className="interface__action interface-item interface-item__action interface-item--action-red"
         onClick={handleDelete}

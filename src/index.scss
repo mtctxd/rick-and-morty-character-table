@@ -16,6 +16,7 @@
   --secondary-blue-25: #e5eaf0;
   --secondary-blue-5: #f6f8fa;
   --primary-red-100: #bc2626;
+  --primary-red-80: #bd3e3e;
   --border-rarius: 5px;
   --primary-font: 'Oswald', sans-serif;
 }
@@ -230,8 +231,9 @@ input::placeholder {
 
   &__action {
     width: 156px;
-    border-color: rgba(0, 0, 0, 0.35);
     border: 1px solid var(--secondary-blue-50);
+    cursor: pointer;
+    transition: background-color 200ms;
   }
 
   &__action-word {
@@ -242,12 +244,42 @@ input::placeholder {
     color: white;
   }
 
+  &__action-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-white);
+    border: 1px solid var(--secondary-blue-50);
+    border-radius: var(--border-rarius);
+  }
+
+  &__action-dropdown-item {
+    padding: 8px 12px;
+    font-weight: 500;
+
+    &:hover {
+      background-color: var(--secondary-white-25);
+    }
+  }
+
   &--action-blue {
     background-color: var(--primary-blue-100);
+
+    &:hover {
+      background-color: var(--primary-blue-80);
+    }
   }
 
   &--action-red {
     background-color: var(--primary-red-100);
+    &:hover {
+      background-color: var(--primary-red-80);
+    }
   }
 }
 

@@ -127,6 +127,15 @@ export const appSlice = createSlice({
     sortInitialList: (state, { payload }) => {
       manageSort(state, payload);
     },
+    changeStatus: (state, {payload: {character, status}}) => {
+      state.charactersList.map((listCharacter) => {
+        if (character.id === listCharacter.id) {
+          listCharacter.status = status;
+        }
+        
+        return listCharacter;
+      })
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
@@ -146,6 +155,7 @@ export const {
   deleteToggleMultiple,
   deleteSelectedCharacters,
   sortInitialList,
+  changeStatus,
 } = appSlice.actions;
 
 // should i use it???

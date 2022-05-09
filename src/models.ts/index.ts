@@ -50,10 +50,12 @@ interface Episode {
   names: string[];
 }
 
+export type CharacterStatus = 'Alive' | 'Dead' | 'unknown';
+
 export interface Character {
   id: number;
   name: string;
-  status: 'Alive' | 'Dead' | 'unknown';
+  status: CharacterStatus;
   species: string;
   type: string;
   gender: string;

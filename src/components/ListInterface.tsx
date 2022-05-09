@@ -1,21 +1,27 @@
+import { useAppSelector } from '../redux/hooks';
+
 import ListInterfaceOption from './ListInterfaceOption';
 import ListInterfaceRemove from './ListInterfaceRemove';
 import ListInterfaceSearch from './ListInterfaceSearch';
+import ListInterfaceStatus from './ListInterfaceStatus';
 
 const ListInterface = () => {
+  const { charactersList } = useAppSelector((store) => store.appSlice);
+
+  const checkedCharacters = charactersList.filter(
+    (character) => character.isChecked
+  );
+
   return (
     <div className="list-app__interface interface">
       <ListInterfaceSearch />
       <div className="interface__options">
-        <ListInterfaceOption selectorName={'species'}/>
-        <ListInterfaceOption selectorName={'origin'}/>
-        <ListInterfaceOption selectorName={'status'}/>
+        <ListInterfaceOption selectorName={'species'} />
+        <ListInterfaceOption selectorName={'origin'} />
+        <ListInterfaceOption selectorName={'status'} />
       </div>
       <div className="interface__actions">
-        
-        <div className="interface__action interface-item interface-item__action interface-item--action-blue">
-          Change status
-        </div>
+        {checkedCharacters.length === 1 && <ListInterfaceStatus checkedCharacter={checkedCharacters[0]}/>}
         <ListInterfaceRemove />
       </div>
     </div>
