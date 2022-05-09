@@ -4,15 +4,6 @@
 import Characters from './components/Characters';
 
 const App = () => {
-  // const {value} = useAppSelector(store => store.appSlice);
-  // const { data, error, isLoading} = useGetCharactersQuery('');
- 
-  // if(data) {
-  //   console.log(data);
-  // }
-
-  // const dispatch = useAppDispatch();
-
   return (
     <Characters />
   )

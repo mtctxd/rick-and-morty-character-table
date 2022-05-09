@@ -6,7 +6,7 @@ import {
   prepareCharacterList,
 } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import List from './CharacterList';
+import CharacterList from './CharacterList';
 import ListInterface from './ListInterface';
 
 const Characters = () => {
@@ -25,6 +25,8 @@ const Characters = () => {
     dispatch(filterByOptions());
     dispatch(filterBySearch());
   }, [searchQuery, filterBySearch, filterOptions, charactersList]);
+  console.log(charactersList);
+  
 
   return (
     <div className="container">
@@ -32,7 +34,7 @@ const Characters = () => {
         <div className="list-app__container">
           <div className="list-app__heading">Characters</div>
           <ListInterface />
-          <List />
+          <CharacterList />
         </div>
       </div>
     </div>

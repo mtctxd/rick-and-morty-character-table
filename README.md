@@ -1,17 +1,12 @@
 ## issues / todos
-- [ ] search
-    - [ ] make debounced search
-- [ ] options
-    - [ ] make multy
-- [ ] edits
-- [ ] sort in table
+- [X] search
+- [X] options
+- [X] edits
+- [X] sort in table
 - [ ] pagination
     - [ ] next and prev are not working sometimes
-- [ ] hover on inputs
-    - options
-    - search
-    - actions
+- [X] hover on inputs
 - [x] cleaner useGetAllCharacter
-- [ ] some variable names are too long
+- [X] some variable names are too long
     - [x]changePreparedCharacterList
 - [X] Next time I should think about making Characters list as object where key will be id to this character
