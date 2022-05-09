@@ -59,7 +59,7 @@ const CustomPagination: React.FC<Props> = ({ paginationUtilities }) => {
   return (
     <ReactPaginate
       breakLabel="..."
-    //   nextLabel="&#62;"
+      nextLabel="&#62;"
       onPageChange={handlePageClick}
       pageRangeDisplayed={3}
       pageCount={pageCount}
