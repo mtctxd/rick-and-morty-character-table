@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { WritableDraft } from 'immer/dist/internal';
 import getAllCharacters from '../feature/getAllCharacters';
+import manageFilterOptions from '../feature/manageFilterOptions';
+import manageSort from '../feature/manageSort';
 import { Character, IAppState } from '../models.ts';
 import { RootState } from './store';
 
@@ -27,6 +29,9 @@ const initialState: IAppState = {
     episode: {
       isReversed: false,
     },
+    location: {
+      isReversed: false,
+    }
   },
 };
 
@@ -87,34 +92,7 @@ export const appSlice = createSlice({
       state.searchQuery = payload;
     },
     changeFilterOptions: (state, { payload }) => {
-      const { event, selectorName } = payload;
-
-      switch (selectorName) {
-        case 'species':
-          if (event?.value) {
-            state.filterOptions.species = event.value;
-            break;
-          }
-          state.filterOptions.species = '';
-          break;
-        case 'origin':
-          if (event?.value) {
-            state.filterOptions.origin = event.value;
-            break;
-          }
-          state.filterOptions.origin = '';
-          break;
-        case 'status':
-          if (event?.value) {
-            state.filterOptions.status = event.value;
-            break;
-          }
-          state.filterOptions.status = '';
-          break;
-
-        default:
-          break;
-      }
+      manageFilterOptions(state, payload);
     },
     deleteCheckToggler: (state, { payload }) => {
       state.charactersList.map((character) => {
@@ -147,69 +125,7 @@ export const appSlice = createSlice({
       headerCheckboxStatus: false,
     }),
     sortInitialList: (state, { payload }) => {
-      switch (payload) {
-        case 'name':
-          if (state.sortTypes.name.isReversed) {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.name > comparsionCharacter.name ? -1 : 1
-            );
-            state.sortTypes.name.isReversed = !state.sortTypes.name.isReversed;
-          } else {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.name > comparsionCharacter.name ? 1 : -1
-            );
-            state.sortTypes.name.isReversed = !state.sortTypes.name.isReversed;
-          }
-          break;
-        case 'origin':
-          if (state.sortTypes.origin.isReversed) {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.origin.name > comparsionCharacter.origin.name ? -1 : 1
-            );
-            state.sortTypes.origin.isReversed =
-              !state.sortTypes.origin.isReversed;
-          } else {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.origin.name > comparsionCharacter.origin.name ? 1 : -1
-            );
-            state.sortTypes.origin.isReversed =
-              !state.sortTypes.origin.isReversed;
-          }
-          break;
-        case 'episode':
-          if (state.sortTypes.episode.isReversed) {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.episode.names[0] > comparsionCharacter.episode.names[0] ? -1 : 1
-            );
-            state.sortTypes.episode.isReversed =
-              !state.sortTypes.episode.isReversed;
-          } else {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.episode.names[0] > comparsionCharacter.episode.names[0] ? 1 : -1
-            );
-            state.sortTypes.episode.isReversed =
-              !state.sortTypes.episode.isReversed;
-          }
-          break;
-          case 'status':
-          if (state.sortTypes.status.isReversed) {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.status > comparsionCharacter.status ? -1 : 1
-            );
-            state.sortTypes.status.isReversed =
-              !state.sortTypes.status.isReversed;
-          } else {
-            state.charactersList.sort((character, comparsionCharacter) =>
-              character.status > comparsionCharacter.status ? 1 : -1
-            );
-            state.sortTypes.status.isReversed =
-              !state.sortTypes.status.isReversed;
-          }
-          break;
-
-        default:
-          break;
-      }
+      manageSort(state, payload);
     },
   },
   extraReducers: (builder) => {

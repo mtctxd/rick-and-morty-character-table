@@ -5,6 +5,7 @@ import { Character, SortTypes } from '../models.ts';
 import { deleteToggleMultiple, sortInitialList } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import CharacterInList from './CharacterInList';
+import SortSVGIcon from './SortSVGIcon';
 
 const Table = () => {
   const {
@@ -74,99 +75,24 @@ const Table = () => {
             onClick={() => handleSortClick('name')}
             >
               Name
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.6141 9H4.38588C4.04383 9 3.86958 9.41304 4.11483 9.65829L7.72892 13.2724C7.87736 13.4209 8.1226 13.4209 8.2711 13.2724L11.8852 9.65829C12.1304 9.41304 11.9561 9 11.6141 9Z"
-                  fill="#5F6569"
-                />
-                <path
-                  d="M4.38593 6.3838H11.6141C11.9562 6.3838 12.1304 5.97076 11.8852 5.72551L8.27109 2.11138C8.12265 1.96295 7.87741 1.96295 7.72891 2.11138L4.11481 5.72551C3.86963 5.97076 4.04388 6.3838 4.38593 6.3838Z"
-                  fill="#C6C8C9"
-                />
-              </svg>
+              <SortSVGIcon sortName='name' />
             </div>
             <div className="list__item-cell-combined">
               <div className="list__item-cell list__item-cell--with-sort">
                 Avatar
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M11.6141 9H4.38588C4.04383 9 3.86958 9.41304 4.11483 9.65829L7.72892 13.2724C7.87736 13.4209 8.1226 13.4209 8.2711 13.2724L11.8852 9.65829C12.1304 9.41304 11.9561 9 11.6141 9Z"
-                    fill="#5F6569"
-                  />
-                  <path
-                    d="M4.38593 6.3838H11.6141C11.9562 6.3838 12.1304 5.97076 11.8852 5.72551L8.27109 2.11138C8.12265 1.96295 7.87741 1.96295 7.72891 2.11138L4.11481 5.72551C3.86963 5.97076 4.04388 6.3838 4.38593 6.3838Z"
-                    fill="#C6C8C9"
-                  />
-                </svg>
+                <SortSVGIcon sortName='location' />
               </div>
               <div className="list__item-cell list__item-cell--with-sort" onClick={() => handleSortClick('origin')}>
                 Origin
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M11.6141 9H4.38588C4.04383 9 3.86958 9.41304 4.11483 9.65829L7.72892 13.2724C7.87736 13.4209 8.1226 13.4209 8.2711 13.2724L11.8852 9.65829C12.1304 9.41304 11.9561 9 11.6141 9Z"
-                    fill="#5F6569"
-                  />
-                  <path
-                    d="M4.38593 6.3838H11.6141C11.9562 6.3838 12.1304 5.97076 11.8852 5.72551L8.27109 2.11138C8.12265 1.96295 7.87741 1.96295 7.72891 2.11138L4.11481 5.72551C3.86963 5.97076 4.04388 6.3838 4.38593 6.3838Z"
-                    fill="#C6C8C9"
-                  />
-                </svg>
+                <SortSVGIcon sortName='origin' />
               </div>
               <div className="list__item-cell list__item-cell--with-sort" onClick={() => handleSortClick('episode')}>
                 Episode
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M11.6141 9H4.38588C4.04383 9 3.86958 9.41304 4.11483 9.65829L7.72892 13.2724C7.87736 13.4209 8.1226 13.4209 8.2711 13.2724L11.8852 9.65829C12.1304 9.41304 11.9561 9 11.6141 9Z"
-                    fill="#5F6569"
-                  />
-                  <path
-                    d="M4.38593 6.3838H11.6141C11.9562 6.3838 12.1304 5.97076 11.8852 5.72551L8.27109 2.11138C8.12265 1.96295 7.87741 1.96295 7.72891 2.11138L4.11481 5.72551C3.86963 5.97076 4.04388 6.3838 4.38593 6.3838Z"
-                    fill="#C6C8C9"
-                  />
-                </svg>
+                <SortSVGIcon sortName='episode' />
               </div>
               <div className="list__item-cell list__item-cell--with-sort" onClick={() => handleSortClick('status')}>
                 Status
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M11.6141 9H4.38588C4.04383 9 3.86958 9.41304 4.11483 9.65829L7.72892 13.2724C7.87736 13.4209 8.1226 13.4209 8.2711 13.2724L11.8852 9.65829C12.1304 9.41304 11.9561 9 11.6141 9Z"
-                    fill="#5F6569"
-                  />
-                  <path
-                    d="M4.38593 6.3838H11.6141C11.9562 6.3838 12.1304 5.97076 11.8852 5.72551L8.27109 2.11138C8.12265 1.96295 7.87741 1.96295 7.72891 2.11138L4.11481 5.72551C3.86963 5.97076 4.04388 6.3838 4.38593 6.3838Z"
-                    fill="#C6C8C9"
-                  />
-                </svg>
+                <SortSVGIcon sortName='status' />
               </div>
             </div>
           </li>

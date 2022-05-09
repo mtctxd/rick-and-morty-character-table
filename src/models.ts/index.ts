@@ -7,7 +7,7 @@ export interface IAppState {
   sortTypes: SortCondition<SortTypes>;
 }
 
-export type SortTypes = 'name' | 'origin' | 'episode' | 'status';
+export type SortTypes = 'name' | 'origin' | 'episode' | 'status' | 'location';
 
 export type SortCondition<P extends string> = {
   [Property in P]: {

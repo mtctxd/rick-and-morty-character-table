@@ -2,10 +2,7 @@ import Select, { components, SingleValue } from 'react-select';
 import capitalize from '../feature/capitalize';
 import makeOptionsList from '../feature/makeList';
 import {
-  SELECT_FONT_SIZE,
-  SELECT_FONT_COLOR,
-  SELECT_WIDTH,
-  SELECT_PLACEHOLDER_COLOR,
+  selectStyles,
 } from '../jsStyles';
 import { filterOption } from '../models.ts';
 import { changeFilterOptions } from '../redux/appSlice';
@@ -39,44 +36,6 @@ const ListInterfaceOption: React.FC<Props> = ({ selectorName }) => {
       </components.DropdownIndicator>
     ),
     IndicatorSeparator: () => null,
-  };
-
-  const selectStyles = {
-    valueContainer: (base: any) => ({
-      ...base,
-      width: SELECT_WIDTH,
-    }),
-    group: (base: any) => ({
-      ...base,
-      width: SELECT_WIDTH,
-    }),
-    container: (base: any) => ({
-      ...base,
-      width: SELECT_WIDTH,
-      
-      fontSize: SELECT_FONT_SIZE,
-    }),
-    control: (base: any) => ({
-      ...base,
-      fontSize: SELECT_FONT_SIZE,
-      width: SELECT_WIDTH,
-    }),
-    singleValue: (base: any) => ({
-      ...base,
-      width: SELECT_WIDTH,
-    }),
-    input: (base: any) => ({
-      ...base,
-      width: SELECT_WIDTH,
-      color: SELECT_FONT_COLOR,
-      '& input': {
-        font: 'inherit',
-      },
-    }),
-    placeholder: (base: any) => ({
-      ...base,
-      color: SELECT_PLACEHOLDER_COLOR,
-    }),
   };
 
   const handleChange = (
