@@ -21,9 +21,11 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
   };
 
   return (
-    <li className={classNames('list__item', {
-      'list__item--background-grey': status === 'Dead'
-    })}>
+    <li
+      className={classNames('list__item', {
+        'list__item--background-grey': status === 'Dead',
+      })}
+    >
       <div className="list__item-cell list__item-cell--checkbox">
         <input
           type="checkbox"
@@ -34,8 +36,20 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
       </div>
       <div className="list__item-cell">
         <div className="list__item-cell-container">
-          <div className="list__word">{cutWord(name)}</div>
-          <div className="list__word--secondary">{cutWord(species)}</div>
+          <div
+            className={classNames('list__word', {
+              'list__word--dead': status === 'Dead',
+            })}
+          >
+            {cutWord(name)}
+          </div>
+          <div
+            className={classNames('list__word--secondary', {
+              'list__word--secondary-dead': status === 'Dead',
+            })}
+          >
+            {cutWord(species)}
+          </div>
         </div>
       </div>
       <div className="list__item-cell list__item-cell-combined">
@@ -44,7 +58,13 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
         </div>
         <div className="list__item-cell">
           <div className="list__item-cell-container">
-            <div className="list__word">{cutWord(origin.name)}</div>
+            <div
+              className={classNames('list__word', {
+                'list__word--unknown-location': origin.name === 'unknown',
+              })}
+            >
+              {cutWord(origin.name)}
+            </div>
             <div className="list__word--secondary">
               {origin.entry && cutWord(origin.entry)}
             </div>
@@ -53,16 +73,27 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
         <div className="list__item-cell">
           <div className="list__item-cell-container">
             {episode.names.slice(0, 2).map((episodeName) => (
-              <div key={episodeName}>{cutWord(episodeName)}</div>
+              <div
+                key={episodeName}
+                className={classNames('list__word', 'list__word--episode', {
+                  'list__word--dead': status === 'Dead',
+                })}
+              >
+                {cutWord(episodeName)}
+              </div>
             ))}
           </div>
         </div>
         <div className="list__item-cell">
           <div className="list__item-cell-container list__item-cell-container--horisontal">
             <StatusIcon status={status} />
-            <span className={classNames('list__word-status', {
-              'list__word-status--unknown': status === 'unknown'
-            })}>{status}</span>
+            <span
+              className={classNames('list__word-status', {
+                'list__word-status--unknown': status === 'unknown',
+              })}
+            >
+              {status}
+            </span>
           </div>
         </div>
       </div>

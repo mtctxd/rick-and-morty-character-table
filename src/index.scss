@@ -110,9 +110,26 @@ input::placeholder {
   &__word {
     font-weight: 500;
 
+    &--dead {
+      color: var(--primary-anthracite-70);
+    }
+
     &--secondary {
       font-weight: 400;
       color: var(--primary-anthracite-80);
+    }
+
+    &--secondary-dead {
+      color: var(--primary-anthracite-50);
+    }
+
+    &--episode {
+      font-weight: 400;
+    }
+
+    &--unknown-location {
+      font-weight: 400;
+      color: var(--primary-anthracite-25);
     }
   }
 
