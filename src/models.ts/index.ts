@@ -4,6 +4,15 @@ export interface IAppState {
   searchQuery: string;
   filterOptions: IFilterOptions;
   headerCheckboxStatus: boolean;
+  sortTypes: SortCondition<SortTypes>;
+}
+
+export type SortTypes = 'name' | 'origin' | 'episode' | 'status';
+
+export type SortCondition<P extends string> = {
+  [Property in P]: {
+    isReversed: boolean,
+  }
 }
 
 export interface IFilterOptions {

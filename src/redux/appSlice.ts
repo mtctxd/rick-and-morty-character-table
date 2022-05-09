@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { WritableDraft } from 'immer/dist/internal';
 import getAllCharacters from '../feature/getAllCharacters';
 import { Character, IAppState } from '../models.ts';
 import { RootState } from './store';
@@ -13,6 +14,20 @@ const initialState: IAppState = {
     status: '',
   },
   headerCheckboxStatus: false,
+  sortTypes: {
+    name: {
+      isReversed: false,
+    },
+    origin: {
+      isReversed: false,
+    },
+    status: {
+      isReversed: false,
+    },
+    episode: {
+      isReversed: false,
+    },
+  },
 };
 
 export const initialCharactersFetch = createAsyncThunk(
@@ -131,6 +146,71 @@ export const appSlice = createSlice({
       ),
       headerCheckboxStatus: false,
     }),
+    sortInitialList: (state, { payload }) => {
+      switch (payload) {
+        case 'name':
+          if (state.sortTypes.name.isReversed) {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.name > comparsionCharacter.name ? -1 : 1
+            );
+            state.sortTypes.name.isReversed = !state.sortTypes.name.isReversed;
+          } else {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.name > comparsionCharacter.name ? 1 : -1
+            );
+            state.sortTypes.name.isReversed = !state.sortTypes.name.isReversed;
+          }
+          break;
+        case 'origin':
+          if (state.sortTypes.origin.isReversed) {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.origin.name > comparsionCharacter.origin.name ? -1 : 1
+            );
+            state.sortTypes.origin.isReversed =
+              !state.sortTypes.origin.isReversed;
+          } else {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.origin.name > comparsionCharacter.origin.name ? 1 : -1
+            );
+            state.sortTypes.origin.isReversed =
+              !state.sortTypes.origin.isReversed;
+          }
+          break;
+        case 'episode':
+          if (state.sortTypes.episode.isReversed) {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.episode.names[0] > comparsionCharacter.episode.names[0] ? -1 : 1
+            );
+            state.sortTypes.episode.isReversed =
+              !state.sortTypes.episode.isReversed;
+          } else {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.episode.names[0] > comparsionCharacter.episode.names[0] ? 1 : -1
+            );
+            state.sortTypes.episode.isReversed =
+              !state.sortTypes.episode.isReversed;
+          }
+          break;
+          case 'status':
+          if (state.sortTypes.status.isReversed) {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.status > comparsionCharacter.status ? -1 : 1
+            );
+            state.sortTypes.status.isReversed =
+              !state.sortTypes.status.isReversed;
+          } else {
+            state.charactersList.sort((character, comparsionCharacter) =>
+              character.status > comparsionCharacter.status ? 1 : -1
+            );
+            state.sortTypes.status.isReversed =
+              !state.sortTypes.status.isReversed;
+          }
+          break;
+
+        default:
+          break;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(initialCharactersFetch.fulfilled, (state, { payload }) => {
@@ -149,6 +229,7 @@ export const {
   deleteCheckToggler,
   deleteToggleMultiple,
   deleteSelectedCharacters,
+  sortInitialList,
 } = appSlice.actions;
 
 // should i use it???

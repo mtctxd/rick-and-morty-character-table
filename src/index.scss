@@ -105,6 +105,18 @@ input::placeholder {
     &--checkbox {
       justify-content: center;
     }
+
+    &--with-sort {
+      padding-right: 12px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+  }
+
+  &__item-cell-combined {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   &__word {
@@ -151,11 +163,6 @@ input::placeholder {
       flex-direction: row;
       align-items: center;
     }
-  }
-
-  &__item-cell-combined {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
   }
 }
 
