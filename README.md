@@ -1,8 +1,7 @@
 # Rick and Morty characters list
 
     Simple app that posts info about Rick and Morty characters
-    - [DEMO](https://mtctxd.github.io/rick-and-morty-character-table/)
-
+[DEMO](https://mtctxd.github.io/rick-and-morty-character-table/)
 ## Technologies i used
 
     - typescript
@@ -46,6 +45,7 @@
 - [x] Next time I should think about making Characters list as object where key will be id to this character
 
 ## Q&A
+
 Q: Why you using sass if you dont use variables?
 A: Why I dod not used scss variables? Because after compiling this variable would turn into just ready property, but if i type like native css property, it would be using like native property in the browser.
 So, why i did use scss in the first place? Nesting....
