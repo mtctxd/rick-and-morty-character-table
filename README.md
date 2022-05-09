@@ -45,5 +45,7 @@
   - [x]changePreparedCharacterList
 - [x] Next time I should think about making Characters list as object where key will be id to this character
 
-Why I dod not used scss variables? Because after compiling this variable would turn into just ready property, but if i type like native css property, it would be using like native property in the browser.
+## Q&A
+Q: Why you using sass if you dont use variables?
+A: Why I dod not used scss variables? Because after compiling this variable would turn into just ready property, but if i type like native css property, it would be using like native property in the browser.
 So, why i did use scss in the first place? Nesting....
