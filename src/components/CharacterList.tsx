@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import { ITEMS_PER_PAGE, LOADER_CHARACTER } from '../constants';
+import {
+  EMPTY_CHARACTER,
+  ITEMS_PER_PAGE,
+  LOADER_CHARACTER,
+} from '../constants';
 import { Character } from '../models.ts';
 import { useAppSelector } from '../redux/hooks';
 
@@ -9,9 +13,8 @@ import CharacterInList from './CharacterInList';
 import CharacterListHeading from './CharacterListHeading';
 
 const CharacterList = () => {
-  const { preparedCharacterList, filterOptions, searchQuery } = useAppSelector(
-    (store) => store.appSlice
-  );
+  const { preparedCharacterList, filterOptions, searchQuery, charactersList } =
+    useAppSelector((store) => store.appSlice);
 
   const [currentItems, setCurrentItems] = useState<Character[] | null>(null);
   const [pageCount, setPageCount] = useState(0);
@@ -52,15 +55,19 @@ const CharacterList = () => {
       <div className="list">
         <ul className="list__container">
           <CharacterListHeading currentItems={currentItems} />
-          {currentItems && currentItems.length !== 0 ? (
+          {currentItems &&
+          currentItems.length !== 0 &&
+          charactersList.length !== 0 ? (
             (currentItems as Character[]).map((characterFromList) => (
               <CharacterInList
                 character={characterFromList}
                 key={characterFromList.id}
               />
             ))
-          ) : (
+          ) : charactersList && charactersList.length === 0 ? (
             <CharacterInList character={LOADER_CHARACTER} />
+          ) : (
+            <CharacterInList character={EMPTY_CHARACTER} />
           )}
         </ul>
       </div>
