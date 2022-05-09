@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import {
   filterByOptions,
   filterBySearch,
@@ -6,6 +7,7 @@ import {
   prepareCharacterList,
 } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+
 import CharacterList from './CharacterList';
 import ListInterface from './ListInterface';
 
@@ -25,11 +27,9 @@ const Characters = () => {
     dispatch(filterByOptions());
     dispatch(filterBySearch());
   }, [searchQuery, filterBySearch, filterOptions, charactersList]);
-  console.log(charactersList);
-  
 
   return (
-    <div className="container">
+    <div className="container app__characters">
       <div className="list-app">
         <div className="list-app__container">
           <div className="list-app__heading">Characters</div>

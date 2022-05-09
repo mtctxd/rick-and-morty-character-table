@@ -1,7 +1,7 @@
 const cutWord = (
   word: string,
   desiredLength: number = 25,
-  replacer: string = '...',
+  replacer: string = '...'
 ) => {
   const newWord = word.slice(0, desiredLength) + replacer;
   if (newWord.length <= desiredLength) {

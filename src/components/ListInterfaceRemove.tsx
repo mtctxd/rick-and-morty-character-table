@@ -1,16 +1,17 @@
-import { deleteSelectedCharacters } from "../redux/appSlice";
-import { useAppDispatch } from "../redux/hooks";
+import { deleteSelectedCharacters } from '../redux/appSlice';
+import { useAppDispatch } from '../redux/hooks';
 
 const ListleInterfaceRemove = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-    const handleDelete = () => {
-        dispatch(deleteSelectedCharacters())
-    }
+  const handleDelete = () => {
+    dispatch(deleteSelectedCharacters());
+  };
 
   return (
-    <button className="interface__action interface-item interface-item__action interface-item--action-red"
-        onClick={handleDelete}
+    <button
+      className="interface__action interface-item interface-item__action interface-item--action-red"
+      onClick={handleDelete}
     >
       <svg
         width="16"

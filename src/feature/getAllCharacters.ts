@@ -5,6 +5,8 @@ const getAllCharacters = async (): Promise<Character[]> => {
   let res = await fetch(`${API_RNM}/character/`);
   let data = await res.json();
 
+  // getting array of characters
+
   const restOfThepages = await Promise.all(
     Array(data.info.pages - 1)
       .fill(0)
@@ -21,17 +23,23 @@ const getAllCharacters = async (): Promise<Character[]> => {
 
   const flattenedData = restOfThepages.reduce((acc, d) => [...acc, ...d], []);
 
-  const result = [...data.results, ...flattenedData];
+  const initialResult = [...data.results, ...flattenedData];
+
+  // geting aditional information
 
   const preparedResult = await Promise.all(
-    result.map(async (character) => {
+    initialResult.map(async (character) => {
       const { origin, episode, location } = character;
+
+      // origin name
 
       if (origin.name !== 'unknown') {
         const entryData = await fetch(origin.url);
         const entry = await entryData.json();
         character.origin.entry = entry.type;
       }
+
+      // episodes
 
       const episodeNames = await Promise.all(
         episode.map(async (episodeUrl: string) => {
@@ -42,12 +50,16 @@ const getAllCharacters = async (): Promise<Character[]> => {
         })
       );
 
+        // current location tyle
+      
       if (location.url) {
         const locationTypeData = await fetch(location.url);
         const locationData = await locationTypeData.json();
 
         character.location.type = locationData.type;
       }
+
+      // adding some more information
 
       character.shouldDelete = false;
       character.episode = {

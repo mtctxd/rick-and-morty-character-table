@@ -53,7 +53,7 @@ interface Episode {
 export type CharacterStatus = 'Alive' | 'Dead' | 'unknown';
 
 export interface Character {
-  id: number;
+  id: number | string;
   name: string;
   status: CharacterStatus;
   species: string;

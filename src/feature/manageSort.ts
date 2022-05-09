@@ -1,5 +1,7 @@
 import { IAppState, SortTypes } from '../models.ts';
 
+// here is big mistake i know about
+
 const manageSort = (state: IAppState, payload: SortTypes) => {
   switch (payload) {
     case 'name':

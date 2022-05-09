@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { CharacterStatus } from '../models.ts';
+
 type Props = {
-  status: 'Alive' | 'Dead' | 'unknown';
+  status: CharacterStatus;
 };
 
 const StatusIcon: React.FC<Props> = ({ status }) => {

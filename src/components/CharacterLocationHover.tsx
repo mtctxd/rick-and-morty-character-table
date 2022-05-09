@@ -1,6 +1,7 @@
 import React from "react";
-import cutWord from "../feature/cutWord";
+
 import { Character } from "../models.ts";
+import cutWord from "../feature/cutWord";
 
 type Props = {
     character: Character;

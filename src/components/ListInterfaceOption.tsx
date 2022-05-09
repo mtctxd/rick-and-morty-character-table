@@ -1,9 +1,8 @@
 import Select, { components, SingleValue } from 'react-select';
+
 import capitalize from '../feature/capitalize';
 import makeOptionsList from '../feature/makeList';
-import {
-  selectStyles,
-} from '../jsStyles';
+import { selectStyles } from '../jsStyles';
 import { filterOption } from '../models.ts';
 import { changeFilterOptions } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';

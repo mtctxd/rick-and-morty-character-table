@@ -3,7 +3,10 @@ function capitalize(word: string) {
     return word
   };
 
-  return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  const firstLetter = word[0].toUpperCase();
+  const rest = word.substr(1).toLowerCase();
+
+  return firstLetter + rest;
 }
 
 export default capitalize;

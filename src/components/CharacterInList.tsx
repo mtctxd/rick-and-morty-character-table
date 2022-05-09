@@ -2,11 +2,12 @@ import cutWord from '../feature/cutWord';
 import { Character } from '../models.ts';
 import { deleteCheckToggler } from '../redux/appSlice';
 import { useAppDispatch } from '../redux/hooks';
+import { v4 as uuidv4 } from 'uuid';
 
+import { useState } from 'react';
 import classNames from 'classnames';
 
 import StatusIcon from './StatusIcon';
-import { useState } from 'react';
 import CharacterLocationHover from './CharacterLocationHover';
 
 type Props = {
@@ -14,10 +15,11 @@ type Props = {
 };
 
 const CharacterInList: React.FC<Props> = ({ character }) => {
-  const { name, image, origin, episode, status, isChecked, id, species } =
-    character;
   const dispatch = useAppDispatch();
   const [showLocation, setShowLocation] = useState(false);
+
+  const { name, image, origin, episode, status, isChecked, id, species } =
+    character;
 
   const handleChange = () => {
     dispatch(deleteCheckToggler(id));
@@ -62,9 +64,7 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
           onMouseLeave={() => setShowLocation(false)}
         >
           <img src={image} alt={name} className="list__image" />
-          {showLocation && (
-            <CharacterLocationHover character={character} />
-          )}
+          {showLocation && <CharacterLocationHover character={character} />}
         </div>
         <div className="list__item-cell">
           <div className="list__item-cell-container">
@@ -84,8 +84,8 @@ const CharacterInList: React.FC<Props> = ({ character }) => {
           <div className="list__item-cell-container">
             {episode.names.slice(0, 2).map((episodeName) => (
               <div
-                key={episodeName}
-                className={classNames('list__word', 'list__word--episode', {
+                key={uuidv4()}
+                className={classNames('list__word', {
                   'list__word--dead': status === 'Dead',
                 })}
               >

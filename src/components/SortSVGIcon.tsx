@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SORT_ICON_DARKEN, SORT_ICON_LIGHTEN } from '../jsStyles';
 import { SortTypes } from '../models.ts';
 import { useAppSelector } from '../redux/hooks';

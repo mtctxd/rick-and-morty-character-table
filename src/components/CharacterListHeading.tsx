@@ -1,20 +1,17 @@
 import React from 'react';
+
 import { Character, SortTypes } from '../models.ts';
 import { deleteToggleMultiple, sortInitialList } from '../redux/appSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+
 import SortSVGIcon from './SortSVGIcon';
 
 type Props = {
-    currentItems: Character[] | null;
-}
+  currentItems: Character[] | null;
+};
 
 const CharacterListHeading: React.FC<Props> = ({ currentItems }) => {
-  const {
-    preparedCharacterList,
-    filterOptions,
-    searchQuery,
-    headerCheckboxStatus,
-  } = useAppSelector((store) => store.appSlice);
+  const { headerCheckboxStatus } = useAppSelector((store) => store.appSlice);
   const dispatch = useAppDispatch();
 
   const handleChange = () => {

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { WritableDraft } from 'immer/dist/internal';
+
 import getAllCharacters from '../feature/getAllCharacters';
 import manageFilterOptions from '../feature/manageFilterOptions';
 import manageSort from '../feature/manageSort';

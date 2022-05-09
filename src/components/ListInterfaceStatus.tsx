@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import { Character, CharacterStatus } from '../models.ts';
 import { changeStatus } from '../redux/appSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
 
 type Props = {
   checkedCharacter: Character;

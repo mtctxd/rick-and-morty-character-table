@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+
 import { ITEMS_PER_PAGE, LOADER_CHARACTER } from '../constants';
-import { Character, SortTypes } from '../models.ts';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { Character } from '../models.ts';
+import { useAppSelector } from '../redux/hooks';
+
 import CharacterInList from './CharacterInList';
 import CharacterListHeading from './CharacterListHeading';
 
 const CharacterList = () => {
-  const { preparedCharacterList, filterOptions, searchQuery, charactersList } =
-    useAppSelector((store) => store.appSlice);
-  const dispatch = useAppDispatch();
+  const { preparedCharacterList, filterOptions, searchQuery } = useAppSelector(
+    (store) => store.appSlice
+  );
 
   const [currentItems, setCurrentItems] = useState<Character[] | null>(null);
   const [pageCount, setPageCount] = useState(0);
@@ -58,9 +60,7 @@ const CharacterList = () => {
               />
             ))
           ) : (
-            <CharacterInList
-                character={LOADER_CHARACTER}
-              />
+            <CharacterInList character={LOADER_CHARACTER} />
           )}
         </ul>
       </div>
